@@ -29,6 +29,10 @@
     25 => 'App\\Providers\\AuthServiceProvider',
     26 => 'App\\Providers\\EventServiceProvider',
     27 => 'App\\Providers\\RouteServiceProvider',
+    28 => 'Laracasts\\Flash\\FlashServiceProvider',
+    29 => 'Collective\\Html\\HtmlServiceProvider',
+    30 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    31 => 'Barryvdh\\DomPDF\\ServiceProvider',
   ),
   'eager' => 
   array (
@@ -47,6 +51,9 @@
     12 => 'App\\Providers\\AuthServiceProvider',
     13 => 'App\\Providers\\EventServiceProvider',
     14 => 'App\\Providers\\RouteServiceProvider',
+    15 => 'Laracasts\\Flash\\FlashServiceProvider',
+    16 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    17 => 'Barryvdh\\DomPDF\\ServiceProvider',
   ),
   'deferred' => 
   array (
@@ -140,6 +147,10 @@
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
+    'html' => 'Collective\\Html\\HtmlServiceProvider',
+    'form' => 'Collective\\Html\\HtmlServiceProvider',
+    'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
+    'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
   ),
   'when' => 
   array (
@@ -180,6 +191,9 @@
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 
+    array (
+    ),
+    'Collective\\Html\\HtmlServiceProvider' => 
     array (
     ),
   ),
