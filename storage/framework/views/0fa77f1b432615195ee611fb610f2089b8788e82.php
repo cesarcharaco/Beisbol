@@ -24,7 +24,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         
-        <?php echo $__env->make('layouts.partials.contentheader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        
         
         <section class="content">
             <div class="row">

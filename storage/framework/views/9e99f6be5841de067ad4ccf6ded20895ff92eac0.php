@@ -6,6 +6,9 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
+<!-- jQuery 2.2.3 -->
+<script src="<?php echo e(asset('plugins/jQueryUI/jquery-ui.min.js')); ?>" type="text/javascript"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo e(asset('bower_components/bootstrap/dist/js/bootstrap.min.js')); ?>"></script>
 <!-- Morris.js charts -->
@@ -21,5 +24,42 @@
 <script src="<?php echo e(asset('dist/js/pages/dashboard.js')); ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
+<!-- DataTables -->
+<script src="<?php echo e(asset('bower_components/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')); ?>"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+<!-- Select2 -->
+<script src="<?php echo e(asset('bower_components/select2/dist/js/select2.full.min.js')); ?>"></script>
+<script type="text/javascript">
+  //Initialize Select2 Elements
+    $('.select2').select2()
 
+</script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo e(asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
 <?php echo $__env->yieldContent('scripts'); ?>

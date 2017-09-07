@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content-header">
     <h1>
         Representantes
@@ -14,21 +12,22 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-11">
-            @include('alerts.requests')
-            @include('flash::message')
+            <?php echo $__env->make('alerts.requests', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <div class="panel panel-default">
                 <div class="panel-heading">Registro de Representantes<br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['route' => ['representantes.store'], 'method' => 'post']) !!}
+                    <?php echo Form::open(['route' => ['representantes.store'], 'method' => 'post']); ?>
+
     
-                         @include('admin.representantes.partials.create-fields')
+                         <?php echo $__env->make('admin.representantes.partials.create-fields', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Enviar</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/representantes')}}"><i class="fa fa-times"></i> Cancelar</a>
+                        <a class="btn btn-danger pull-right btn-flat" href="<?php echo e(url('admin/representantes')); ?>"><i class="fa fa-times"></i> Cancelar</a>
                       </div>
-                    {!! Form::close() !!} 
+                    <?php echo Form::close(); ?> 
                         <!-- /.form-group -->
                 </div>
             </div>
@@ -54,4 +53,5 @@
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

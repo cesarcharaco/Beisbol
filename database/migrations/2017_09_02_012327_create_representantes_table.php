@@ -24,8 +24,7 @@ class CreateRepresentantesTable extends Migration
             $table->string('telf1',7);
             $table->string('cod2',4);
             $table->string('telf2',7);
-            $table->string('cod3',4);
-            $table->string('telf3',7);
+            $table->string('correo',255);
             $table->integer('id_parentesco')->unsigned();
             $table->enum('representante',['Si','No']);
 

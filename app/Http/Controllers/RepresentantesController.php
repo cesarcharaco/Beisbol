@@ -17,7 +17,7 @@ class RepresentantesController extends Controller
     {
         $representantes=Representantes::all();
         $num=0;
-
+        
         return view('admin.representantes.index', compact('representantes','num'));
     }
 

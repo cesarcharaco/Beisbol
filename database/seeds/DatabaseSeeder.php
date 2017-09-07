@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ParentescosTableSeeder::class);
         $this->call(TipoPersonasTableSeeder::class);
         $this->call(CategoriasTableSeeder::class);
+        $this->call(RepresentantesTableSeeder::class);
     }
 }
