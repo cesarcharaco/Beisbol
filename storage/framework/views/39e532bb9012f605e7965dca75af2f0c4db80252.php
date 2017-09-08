@@ -36,12 +36,12 @@
 	<?php echo Form::textarea('direccion',null,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante']); ?>
 
 </div>
-
+<div class="row">
 <div class="col-xs-6">
 		<div class="form-group<?php echo e($errors->has('telf1') ? ' has-error' : ''); ?>">
 			<?php echo Form::label('telefono','* Teléfono Principal'); ?>
 
-			<select name="cod1" id="cod1" style="width: 80px;" class="form-control select2" title="Seleccione el código del número telefónico">
+			<select name="cod1" id="cod1" style="width: 100px;" class="form-control select2" title="Seleccione el código del número telefónico">
 				<option value="0244">0244</option>
 				<option value="0412">0412</option>
 				<option value="0414">0414</option>
@@ -57,7 +57,7 @@
 		<div class="form-group<?php echo e($errors->has('telf2') ? ' has-error' : ''); ?>">
 			<?php echo Form::label('telefono','Teléfono Adicional'); ?>
 
-			<select name="cod2" id="cod2" style="width: 80px;" class="form-control select2" title="Seleccione el código del número telefónico">
+			<select name="cod2" id="cod2" style="width: 100px;" class="form-control select2" title="Seleccione el código del número telefónico">
 				<option value="0244">0244</option>
 				<option value="0412">0412</option>
 				<option value="0414">0414</option>
@@ -65,11 +65,11 @@
 				<option value="0416">0416</option>
 				<option value="0426">0426</option>
 			</select>
-			<?php echo Form::text('telf2', null, ['class' => 'form-control','required' => 'required', 'maxlength' => '7','placeholder' => 'Ej: 1234567', 'style'=>$errors->has('telf2') ? 'border-color: red; border: 1px solid red;': '']); ?>
+			<?php echo Form::text('telf2', null, ['class' => 'form-control', 'maxlength' => '7','placeholder' => 'Ej: 1234567', 'style'=>$errors->has('telf2') ? 'border-color: red; border: 1px solid red;': '']); ?>
 
 		</div>
 </div>
-
+</div>
 <div class="form-group<?php echo e($errors->has('representante') ? ' has-error' : ''); ?>">
 	<?php echo Form::label('representante','Es Representante?'); ?>
 
@@ -81,5 +81,17 @@
 	<?php echo Form::label('correo','Correo'); ?>
 
 	<?php echo Form::email('correo',null,['class' => 'form-control','id' => 'correo', 'title' => 'Ingrese el correo electrónico si es representante', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('nombres') ? 'border-color: red; border: 1px solid red;': '']); ?>
+
+</div>
+
+<div class="form-group">
+	<?php echo Form::label('recaudos','Recaudos'); ?>
+
+</div>
+
+<div class="form-group">
+	<?php echo Form::label('copia_cedula','Copia de la Cédula de Indentidad'); ?>
+
+	<?php echo Form::checkbox('copia_ced','Si',['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante']); ?>
 
 </div>

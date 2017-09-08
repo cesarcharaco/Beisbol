@@ -27,8 +27,11 @@ class CreateRepresentantesTable extends Migration
             $table->string('correo',255);
             $table->integer('id_parentesco')->unsigned();
             $table->enum('representante',['Si','No']);
+            $table->integer('id_recaudo')->unsigned();
+            
 
             $table->foreign('id_parentesco')->references('id')->on('parentescos')->onDelete('cascade');
+            $table->foreign('id_recaudo')->references('id')->on('recaudos')->onDelete('cascade');
             $table->timestamps();
         });
     }

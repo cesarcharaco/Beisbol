@@ -43,13 +43,13 @@
             
             if($(this).is(":checked")) 
             {
-                console.log('hola');
-                    $("#correo").removeAttr('disabled');
+                $("#correo").removeAttr('disabled');
+                $("#copia_ced").removeAttr('disabled');
                 
             } else {
 
-                    $("#correo").prop('disabled', true);
-                    
+                $("#correo").prop('disabled', true);
+                $("#copia_ced").prop('disabled',true);
             }
         });
     });

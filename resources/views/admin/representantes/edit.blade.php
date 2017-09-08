@@ -17,7 +17,7 @@
             @include('alerts.requests')
             @include('flash::message')
             <div class="panel panel-default">
-                <div class="panel-heading">Actualización del Representante<br>
+                <div class="panel-heading">Actualización del Representante{{$representante->id}}<br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">

@@ -56,11 +56,7 @@
                   <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->representante}}</a></td>
                 <td>
                   <div class="btn-group">
-
-                      <a href="#"><button onclick="mostrardatos('{{$representante->nombres}}',
-                        '{{$representante->apellidos}}',
-                        '{{$representante->nacionalidad}}-{{$representante->cedula}}','{{$representante->parentescos->parentesco}}','{{$representante->cod1}} - {{$representante->telf1}}','{{$representante->cod2}} - {{$representante->telf2}}','{{$representante->correo}}','{{$representante->representante}}'
-                        )" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('{{$representante->nombres}}','{{$representante->apellidos}}','{{$representante->nacionalidad}}-{{$representante->cedula}}','{{$representante->parentescos->parentesco}}','{{$representante->cod1}} - {{$representante->telf1}}','{{$representante->cod2}} - {{$representante->telf2}}','{{$representante->correo}}','{{$representante->representante}}','{{$representante->recaudos->copia_ced}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="{{ route('representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -123,7 +119,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Datos del representantes</h4>
+        <h4 class="modal-title">Datos del representante</h4>
       </div>
       <div class="modal-body">               
         <strong>Cédula: </strong>
@@ -134,9 +130,6 @@
         <br>
         <strong>Apellidos: </strong>
         <p id="apellidos"><span></span></p>
-        <br>
-        <strong>Profesión: </strong>
-        <p id="profesion"><span></span></p>
         <br>
         <strong>Parentesco: </strong>
         <p id="parentesco"><span></span></p>
@@ -152,6 +145,9 @@
         <br>
         <strong>Es Representante?: </strong>
         <p id="es_representante"><span></span></p>
+        <br>
+        <strong>Entregó copia de la cédula?: </strong>
+        <p id="copia_ced"><span></span></p>
         
       </div>
       <div class="modal-footer">
@@ -167,7 +163,7 @@
   {
     $("#representante").val(id);
   }
-  function mostrardatos(nombres,apellidos,cedula,parentesco,telf1,telf2,correo,representante) 
+  function mostrardatos(nombres,apellidos,cedula,parentesco,telf1,telf2,correo,representante,copia_ced) 
   {
     $('#cedula').text(cedula);
     $('#nombres').text(nombres);
@@ -175,7 +171,8 @@
     $('#parentesco').text(parentesco);
     $('#telf1').text(telf1);
     $('#telf2').text(telf2);
-    $('#correo').text(text);
+    $('#correo').text(correo);
+    $('#copia_ced').text(copia_ced)
     $('#es_representante').text(representante);
     
   }
