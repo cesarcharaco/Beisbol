@@ -54,7 +54,7 @@
                   <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($representante->representante); ?></a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('<?php echo e($representante->nombres); ?>','<?php echo e($representante->apellidos); ?>','<?php echo e($representante->nacionalidad); ?>-<?php echo e($representante->cedula); ?>','<?php echo e($representante->parentescos->parentesco); ?>','<?php echo e($representante->cod1); ?> - <?php echo e($representante->telf1); ?>','<?php echo e($representante->cod2); ?> - <?php echo e($representante->telf2); ?>','<?php echo e($representante->correo); ?>','<?php echo e($representante->representante); ?>','<?php echo e($representante->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('<?php echo e($representante->nombres); ?>','<?php echo e($representante->apellidos); ?>','<?php echo e($representante->nacionalidad); ?>-<?php echo e($representante->cedula); ?>','<?php echo e($representante->parentescos->parentesco); ?>','<?php echo e($representante->direccion); ?>','<?php echo e($representante->cod1); ?> - <?php echo e($representante->telf1); ?>','<?php echo e($representante->cod2); ?> - <?php echo e($representante->telf2); ?>','<?php echo e($representante->correo); ?>','<?php echo e($representante->representante); ?>','<?php echo e($representante->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="<?php echo e(route('representantes.edit', [$representante->id])); ?>"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -134,6 +134,9 @@
         <strong>Parentesco: </strong>
         <p id="parentesco"><span></span></p>
         <br>
+        <strong>Dirección: </strong>
+        <p id="direccion"><span></span></p>
+        <br>
         <strong>Teléfono Principal: </strong>
         <p id="telf1"><span></span></p>
         <br>
@@ -163,12 +166,13 @@
   {
     $("#representante").val(id);
   }
-  function mostrardatos(nombres,apellidos,cedula,parentesco,telf1,telf2,correo,representante,copia_ced) 
+  function mostrardatos(nombres,apellidos,cedula,parentesco,direccion,telf1,telf2,correo,representante,copia_ced) 
   {
     $('#cedula').text(cedula);
     $('#nombres').text(nombres);
     $('#apellidos').text(apellidos);
     $('#parentesco').text(parentesco);
+    $('#direccion').text(direccion);
     $('#telf1').text(telf1);
     $('#telf2').text(telf2);
     $('#correo').text(correo);

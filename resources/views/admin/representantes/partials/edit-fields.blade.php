@@ -25,7 +25,7 @@
 
 <div class="form-group{{ $errors->has('direccion') ? 'has-error' : ''}}">
 	{!! Form::label('direccion','* Dirección')  !!}
-	{!! Form::textarea('direccion',$representante->direccion,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante']) !!}
+	{!! Form::textarea('direccion',$representante->direccion,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('direccion') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 <div class="row">
 <div class="col-xs-6">
@@ -64,9 +64,9 @@
 <div class="form-group{{ $errors->has('representante') ? ' has-error' : '' }}">
 	{!! Form::label('representante','Es Representante?') !!}
 	@if($representante->representante=="Si")
-	{!! Form::checkbox('representante','Si',['id' => 'es_representante','checked' => 'checked']) !!}
+	{!! Form::checkbox('representante','Si',true,['id' => 'es_representante']) !!}
 	@else
-	{!! Form::checkbox('representante','Si',['id' => 'es_representante']) !!}
+	{!! Form::checkbox('representante','Si',false,['id' => 'es_representante']) !!}
 	@endif
 </div>
 
@@ -86,9 +86,9 @@
 <div class="form-group">
 	{!! Form::label('copia_cedula','Copia de la Cédula de Indentidad') !!}
 	@if($representante->recaudos->copia_ced=="Si")
-	{!! Form::checkbox('copia_ced','Si',['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante','checked' => 'checked']) !!}
+	{!! Form::checkbox('copia_ced','Si',true,['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante', 'id' => 'copia_ced']) !!}
 	@else
-	{!! Form::checkbox('copia_ced','Si',['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante']) !!}
+	{!! Form::checkbox('copia_ced','Si',false,['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante', 'id' => 'copia_ced']) !!}
 	@endif
 </div>
 {!! Form::hidden('id_recaudo',$representante->id_recaudo) !!}

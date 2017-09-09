@@ -1,19 +1,17 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content-header">
     <h1>
-        Representantes
-        <small>Registros de Representantes</small>
+        Personal
+        <small>Registros de Personal</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Representantes</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Personal</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
 <div class="col-xs-12">
-@include('alerts.requests')
-@include('flash::message')
+<?php echo $__env->make('alerts.requests', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </div>
 <div class="container">
 
@@ -22,10 +20,10 @@
         <div class="col-xs-12">
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Representantes</h3>
+              <h3 class="box-title">Personal</h3>
               <div class="btn-group pull-right" style="margin: 15px 0px 15px 15px;">
-            <a href="{{ url('admin/representantes/create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                <i class="fa fa-pencil"></i> Registrar Representante
+            <a href="<?php echo e(url('admin/personal/create')); ?>" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                <i class="fa fa-pencil"></i> Registrar Personal
             </a>
           </div>
             </div>
@@ -37,35 +35,32 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
+                    <th>correo</th>
                     <th>Telf1</th>
-                    <th>Es Reptt?</th>
+                    <th>Personal</th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($representantes as $representante)
+                <?php $__currentLoopData = $personal; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $persona): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->nombres}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->apellidos}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->nacionalidad}} - {{$representante->cedula}}</a></td>
-                  
-                 <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->parentescos->parentesco}}</a></td>
-                  
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->cod1}} - {{$representante->telf1}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->representante}}</a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($num=$num+1); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"> <?php echo e($persona->nombres); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"> <?php echo e($persona->apellidos); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->nacionalidad); ?> - <?php echo e($persona->cedula); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->cod1); ?> - <?php echo e($persona->telf1); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->recaudos->tipopersonas->tipo); ?></a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('{{$representante->nombres}}','{{$representante->apellidos}}','{{$representante->nacionalidad}}-{{$representante->cedula}}','{{$representante->parentescos->parentesco}}','{{$representante->direccion}}','{{$representante->cod1}} - {{$representante->telf1}}','{{$representante->cod2}} - {{$representante->telf2}}','{{$representante->correo}}','{{$representante->representante}}','{{$representante->recaudos->copia_ced}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('<?php echo e($persona->nombres); ?>','<?php echo e($persona->apellidos); ?>','<?php echo e($persona->nacionalidad); ?>-<?php echo e($persona->cedula); ?>','<?php echo e($persona->direccion); ?>','<?php echo e($persona->cod1); ?> - <?php echo e($persona->telf1); ?>','<?php echo e($persona->cod2); ?> - <?php echo e($persona->telf2); ?>','<?php echo e($persona->correo); ?>','<?php echo e($persona->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
-                      <a href="{{ route('representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      <a href="<?php echo e(route('personal.edit', [$persona->id])); ?>"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
-                      <a href="{{ route('representantes.destroy', [$representante->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
+                      <a href="<?php echo e(route('personal.destroy', [$persona->id])); ?>"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
                       <br><br>
                     </div>
                   </td>
                 </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
               <tfoot>
                  <tr>
@@ -73,9 +68,9 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
+                    <th>correo</th>
                     <th>Telf1</th>
-                    <th>Es Reptt?</th>
+                    <th>Personal</th>
                   </tr>
               </tfoot>
             </table>
@@ -98,15 +93,17 @@
                     <h4 class="modal-title">Eliminar Representante</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Esta seguro que desea eliminar este representante en específico?...
+                    ¿Esta seguro que desea eliminar este persona en específico?...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 
-                    {!! Form::open(['route' => ['representantes.destroy',0133], 'method' => 'DELETE']) !!}
-                        <input type="text" id="representante" name="representante">
+                    <?php echo Form::open(['route' => ['personal.destroy',0133], 'method' => 'DELETE']); ?>
+
+                        <input type="text" id="persona" name="persona">
                         <button type="submit" class="btn btn-primary">Aceptar</button>
-                    {!! Form::close() !!}
+                    <?php echo Form::close(); ?>
+
 
                 </div>
             </div>
@@ -119,7 +116,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Datos del representante</h4>
+        <h4 class="modal-title">Datos del Personal Seleccionado</h4>
       </div>
       <div class="modal-body">               
         <strong>Cédula: </strong>
@@ -130,9 +127,6 @@
         <br>
         <strong>Apellidos: </strong>
         <p id="apellidos"><span></span></p>
-        <br>
-        <strong>Parentesco: </strong>
-        <p id="parentesco"><span></span></p>
         <br>
         <strong>Dirección: </strong>
         <p id="direccion"><span></span></p>
@@ -145,9 +139,6 @@
         <br>
         <strong>Correo: </strong>
         <p id="correo"><span></span></p>
-        <br>
-        <strong>Es Representante?: </strong>
-        <p id="es_representante"><span></span></p>
         <br>
         <strong>Entregó copia de la cédula?: </strong>
         <p id="copia_ced"><span></span></p>
@@ -164,9 +155,9 @@
   
   function eliminar(id) 
   {
-    $("#representante").val(id);
+    $("#persona").val(id);
   }
-  function mostrardatos(nombres,apellidos,cedula,parentesco,direccion,telf1,telf2,correo,representante,copia_ced) 
+  function mostrardatos(nombres,apellidos,cedula,direccion,telf1,telf2,correo,copia_ced) 
   {
     $('#cedula').text(cedula);
     $('#nombres').text(nombres);
@@ -177,8 +168,9 @@
     $('#telf2').text(telf2);
     $('#correo').text(correo);
     $('#copia_ced').text(copia_ced)
-    $('#es_representante').text(representante);
     
   }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

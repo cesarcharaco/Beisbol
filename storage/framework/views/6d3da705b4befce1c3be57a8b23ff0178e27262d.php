@@ -37,4 +37,25 @@
 </div>
 
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
+
+<script type="text/javascript">
+    
+    $(document).ready ( function () {
+        $("#es_representante").change( function () {
+            
+            if($(this).is(":checked")) 
+            {
+                $("#correo").removeAttr('disabled');
+                $("#copia_ced").removeAttr('disabled');
+                
+            } else {
+
+                $("#correo").prop('disabled', true);
+                $("#copia_ced").prop('disabled',true);
+            }
+        });
+    });
+</script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -33,7 +33,7 @@
 <div class="form-group<?php echo e($errors->has('direccion') ? 'has-error' : ''); ?>">
 	<?php echo Form::label('direccion','* Dirección'); ?>
 
-	<?php echo Form::textarea('direccion',$representante->direccion,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante']); ?>
+	<?php echo Form::textarea('direccion',$representante->direccion,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('apellidos') ? 'border-color: red; border: 1px solid red;': '']); ?>
 
 </div>
 <div class="row">
@@ -79,10 +79,10 @@
 	<?php echo Form::label('representante','Es Representante?'); ?>
 
 	<?php if($representante->representante=="Si"): ?>
-	<?php echo Form::checkbox('representante','Si',['id' => 'es_representante','checked' => 'checked']); ?>
+	<?php echo Form::checkbox('representante','Si',true,['id' => 'es_representante']); ?>
 
 	<?php else: ?>
-	<?php echo Form::checkbox('representante','Si',['id' => 'es_representante']); ?>
+	<?php echo Form::checkbox('representante','Si',false,['id' => 'es_representante']); ?>
 
 	<?php endif; ?>
 </div>
@@ -108,10 +108,10 @@
 	<?php echo Form::label('copia_cedula','Copia de la Cédula de Indentidad'); ?>
 
 	<?php if($representante->recaudos->copia_ced=="Si"): ?>
-	<?php echo Form::checkbox('copia_ced','Si',['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante','checked' => 'checked']); ?>
+	<?php echo Form::checkbox('copia_ced','Si',true,['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante', 'id' => 'copia_ced']); ?>
 
 	<?php else: ?>
-	<?php echo Form::checkbox('copia_ced','Si',['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante']); ?>
+	<?php echo Form::checkbox('copia_ced','Si',false,['title' => 'Seleccione si entregó la copia de la cédula en caso de ser representante', 'id' => 'copia_ced']); ?>
 
 	<?php endif; ?>
 </div>

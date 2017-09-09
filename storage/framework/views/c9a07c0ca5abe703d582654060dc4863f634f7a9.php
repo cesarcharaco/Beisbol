@@ -24,16 +24,16 @@
 
 </div>
 
-<div class="form-group<?php echo e($errors->has('id_parentesco') ? ' has-error' : ''); ?>">
-	<?php echo Form::label('consulta','* Parentesco'); ?><br>
-	<?php echo Form::select('id_parentesco',$parentescos,null,['class' => 'form control select2', 'title' => 'Seleccione el Parentesco', 'required' => 'required']); ?>
+<div class="form-group<?php echo e($errors->has('id_tipopersona') ? ' has-error' : ''); ?>">
+	<?php echo Form::label('tipopersonal','* Tipo de Personal'); ?><br>
+	<?php echo Form::select('id_tipopersona',$tipopersonas,null,['class' => 'form control select2', 'title' => 'Seleccione el tipo de Personal', 'required' => 'required','style' => 'width:150px']); ?>
 
 </div>
 
 <div class="form-group<?php echo e($errors->has('direccion') ? 'has-error' : ''); ?>">
 	<?php echo Form::label('direccion','* Dirección'); ?>
 
-	<?php echo Form::textarea('direccion',null,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante']); ?>
+	<?php echo Form::textarea('direccion',null,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('direccion') ? 'border-color: red; border: 1px solid red;': '']); ?>
 
 </div>
 <div class="row">
@@ -70,17 +70,11 @@
 		</div>
 </div>
 </div>
-<div class="form-group<?php echo e($errors->has('representante') ? ' has-error' : ''); ?>">
-	<?php echo Form::label('representante','Es Representante?'); ?>
-
-	<?php echo Form::checkbox('representante','Si',false,['id' => 'es_representante']); ?>
-
-</div>
 
 <div class="form-group<?php echo e($errors->has('correo') ? ' has-error' : ''); ?>">
 	<?php echo Form::label('correo','Correo'); ?>
 
-	<?php echo Form::email('correo',null,['class' => 'form-control','id' => 'correo', 'title' => 'Ingrese el correo electrónico si es representante','disabled' => 'disabled', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('correo') ? 'border-color: red; border: 1px solid red;': '']); ?>
+	<?php echo Form::email('correo',null,['class' => 'form-control','id' => 'correo', 'title' => 'Ingrese el correo electrónico si es representante','required' => 'required', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('correo') ? 'border-color: red; border: 1px solid red;': '']); ?>
 
 </div>
 

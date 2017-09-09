@@ -19,4 +19,9 @@ class Recaudos extends Model
     {
     	return $this->hasMany('App\Representantes','id','id_recaudo');
     }
+
+    public function personal()
+    {
+        return $this->hasMany('App\Personal','id','id_recaudo');
+    }
 }

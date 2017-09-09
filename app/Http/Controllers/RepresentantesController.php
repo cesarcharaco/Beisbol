@@ -170,6 +170,7 @@ class RepresentantesController extends Controller
     {
         //verificando la cedula que no este registrada
         $buscar=Representantes::where('cedula',$request->cedula)->where('id','<>',$id)->first();
+
         if (count($buscar)>0) {
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('representantes.edit',$id)->withInput();
@@ -180,7 +181,7 @@ class RepresentantesController extends Controller
                     flash("SI SELECCIONÓ COMO REPRESENTANTE DEBE INGRESAR EL CORREO ELECTRÓNICO!", 'error'); 
                     return redirect()->route('representantes.edit',$id)->withInput();
                 } else {
-                    $buscar2=Representantes::where('correo',$request->correo)->first();
+                    $buscar2=Representantes::where('correo',$request->correo)->where('id','<>',$id)->first();
                     if (count($buscar2)>0) {
                         flash("EL CORREO ELECTRÓNICO YA HA SIDO REGISTRADO!", 'error'); 
                         return redirect()->route('representantes.edit',$id)->withInput();
@@ -217,7 +218,7 @@ class RepresentantesController extends Controller
                         $representante->representante=$request->representante;
                         $representante->correo=$request->correo;
                         $representante->save();
-                        flash("ACTUALIZACIÓN EXITOSA!", 'succes'); 
+                        flash("ACTUALIZACIÓN EXITOSA!", 'success'); 
                         return redirect()->route('representantes.index');
                     }
                 }
@@ -253,7 +254,7 @@ class RepresentantesController extends Controller
                 $representante->correo='Ninguno';
                 $representante->save();
 
-                        flash("ACTUALIZACIÓN EXITOSA!", 'succes'); 
+                        flash("ACTUALIZACIÓN EXITOSA!", 'success'); 
                         return redirect()->route('representantes.index');
             }
             

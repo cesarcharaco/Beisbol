@@ -26,6 +26,18 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i>Nuevo</a></li>
                 </ul>
             </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Personal</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="<?php echo e(url('admin/personal')); ?>"><i class="fa fa-circle-o"></i> Registrados</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                </ul>
+            </li>
             <li class="header">CONFIGURACIÓN</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
