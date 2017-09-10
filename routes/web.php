@@ -20,5 +20,7 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('/representantes','RepresentantesController');
 	Route::resource('/personal','PersonalController');
+	Route::resource('/atletas','AtletasController');
+	Route::get('/municipios/{id}','AtletasController@obtenerMunicipios');
 	
 });

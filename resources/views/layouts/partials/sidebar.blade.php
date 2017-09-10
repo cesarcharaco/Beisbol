@@ -23,7 +23,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ url('admin/representantes') }}"><i class="fa fa-circle-o"></i> Registrados</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                    <li><a href="{{ url('admin/representantes/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
                 </ul>
             </li>
             <li class="active treeview">
@@ -35,7 +35,19 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ url('admin/personal') }}"><i class="fa fa-circle-o"></i> Registrados</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                    <li><a href="{{ url('admin/personal/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                </ul>
+            </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Atletas</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ url('admin/atletas') }}"><i class="fa fa-circle-o"></i> Registrados</a></li>
+                    <li><a href="{{ url('admin/atletas/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
                 </ul>
             </li>
             <li class="header">CONFIGURACIÓN</li>

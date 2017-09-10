@@ -167,7 +167,7 @@
     $('#telf1').text(telf1);
     $('#telf2').text(telf2);
     $('#correo').text(correo);
-    $('#copia_ced').text(copia_ced)
+    $('#copia_ced').text(copia_ced);
     
   }
 </script>
