@@ -1,5 +1,9 @@
+<?php echo Form::hidden('id_recaudo',$atleta->id_recaudo); ?>
+
 <div class="row">
 <div class="col-xs-6">
+<?php echo Form::hidden('id_representante_ant',$id_representante); ?>
+
 <div class="form-group<?php echo e($errors->has('id_representante') ? ' has-error' : ''); ?>">
 	<?php echo Form::label('representante','* Representante'); ?>
 
@@ -16,6 +20,8 @@
 </div>
 
 <div class="col-xs-6">
+<?php echo Form::hidden('id_norepresentante_ant',$id_norepresentante); ?>
+
 <div class="form-group<?php echo e($errors->has('id_representante') ? ' has-error' : ''); ?>">
 	<?php echo Form::label('representante','* Otro Representante'); ?>
 
@@ -120,7 +126,7 @@
 	<?php echo Form::label('categoria','Categoría'); ?>
 
 	<font color="blue"><strong><p id="categoria" ><span></span> </p></strong></font>
-	<?php echo Form::hidden('id_categoria',null,['id' => 'id_categoria']); ?>
+	<?php echo Form::hidden('id_categoria',$atleta->id_categoria,['id' => 'id_categoria']); ?>
 
 </div>
 <?php echo Form::label('lugar_nac','* Lugar de Nacimiento'); ?><br>

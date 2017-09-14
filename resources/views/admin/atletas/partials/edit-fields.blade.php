@@ -1,5 +1,7 @@
+{!! Form::hidden('id_recaudo',$atleta->id_recaudo) !!}
 <div class="row">
 <div class="col-xs-6">
+{!! Form::hidden('id_representante_ant',$id_representante) !!}
 <div class="form-group{{ $errors->has('id_representante') ? ' has-error' : '' }}">
 	{!! Form::label('representante','* Representante') !!}
 	<select name="id_representante" id="id_representante" title="Seleccione el representante con el estudiante" class="form-control select2">
@@ -15,6 +17,7 @@
 </div>
 
 <div class="col-xs-6">
+{!! Form::hidden('id_norepresentante_ant',$id_norepresentante) !!}
 <div class="form-group{{ $errors->has('id_representante') ? ' has-error' : '' }}">
 	{!! Form::label('representante','* Otro Representante') !!}
 	<select name="id_norepresentante" id="id_norepresentante" title="Seleccione el otro representante con el estudiante" class="form-control select2">
@@ -98,7 +101,7 @@
 <div class="form-group">
 	{!! Form::label('categoria','Categoría') !!}
 	<font color="blue"><strong><p id="categoria" ><span></span> </p></strong></font>
-	{!!  Form::hidden('id_categoria',null,['id' => 'id_categoria'])!!}
+	{!!  Form::hidden('id_categoria',$atleta->id_categoria,['id' => 'id_categoria'])!!}
 </div>
 {!! Form::label('lugar_nac','* Lugar de Nacimiento')  !!}<br>
 <div class="row">

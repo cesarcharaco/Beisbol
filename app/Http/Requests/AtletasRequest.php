@@ -28,10 +28,9 @@ class AtletasRequest extends FormRequest
             'primer_apellido' => 'required',
             'nacionalidad' => 'required',
             'fecha_nac' => 'required',
-            'id_estado' => 'required',
-            'id_municipio' => 'required',
-            'id_parroquia' =>  'required',
-            'id_categoria' => 'required'
+            'id_estado' => 'required|numeric',
+            'id_municipio' => 'required|numeric',
+            'id_parroquia' =>  'required|numeric'
 
         ];
     }
@@ -46,7 +45,9 @@ class AtletasRequest extends FormRequest
             'id_estado.required' => 'Debe Seleccionar un estado',
             'id_municipio.required' => 'Debe Seleccionar un Municipio',
             'id_parroquia.required' =>  'Debe Seleccionar una Parroquia',
-            'id_categoria.required' => 'Debe Seleccionar una Categoría'
+            'id_estado.numeric' => 'Debe Seleccionar del Estado',
+            'id_municipio.numeric' => 'Debe Seleccionar el Municipio',
+            'id_parroquia.numeric' => 'Debe Seleccionar la Parroquia'
 
         ];   
     }

@@ -47,7 +47,7 @@ $("#estados").on("change", function (event) {
     $.get("/admin/municipios/"+id+"/buscar",function (data) {
        
 
-       // $("#id_municipio").empty();
+       $("#id_municipio").empty();
        $("#id_municipio").append('<option value="" selected disabled> Seleccione el Municipio</option>');
         
         if(data.length > 0){
@@ -71,7 +71,7 @@ $("#id_municipio").on("change", function (event) {
 
     $.get("/admin/parroquias/"+id+"/buscar",function (data) {
        
-       // $("#id_parroquia").empty();
+       $("#id_parroquia").empty();
        $("#id_parroquia").append('<option value="" selected disabled> Seleccione la Parroquia</option>');
         
         if(data.length > 0){
