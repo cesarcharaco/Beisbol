@@ -21,6 +21,10 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 	Route::resource('/representantes','RepresentantesController');
 	Route::resource('/personal','PersonalController');
 	Route::resource('/atletas','AtletasController');
-	Route::get('/municipios/{id}','AtletasController@obtenerMunicipios');
+	Route::get('/municipios/{id}/buscar','AtletasController@obtenerMunicipios');
+	Route::get('/parroquias/{id}/buscar','AtletasController@obtenerParroquias');
+	Route::get('/categorias/{edad}/buscar','AtletasController@buscarcategoria');
+	Route::resource('/cuotascampeonatos','CuotasCampeonatosController');
+	Route::get('/cuotascampeonatos/editar/{id_mes}/{anio}/{campeonato}','CuotasCampeonatosController@editar');
 	
 });

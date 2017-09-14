@@ -93,7 +93,11 @@ class RepresentantesController extends Controller
                             'correo' => $request->correo,
                             'id_recaudo' => $recaudo->id]);
                         flash("REGISTRO EXITOSO!", 'succes'); 
-                        return redirect()->route('representantes.index');
+                        if ($request->desde==1) {
+                            return redirect()->back();    
+                        } else {
+                            return redirect()->route('representantes.index');
+                        }
                     }
                 }
             } else {//si no es un representante
@@ -128,7 +132,11 @@ class RepresentantesController extends Controller
                     'id_recaudo' => $recaudo->id]);
 
                         flash("REGISTRO EXITOSO!", 'succes'); 
-                        return redirect()->route('representantes.index');
+                        if ($request->desde==1) {
+                            return redirect()->back();    
+                        } else {
+                            return redirect()->route('representantes.index');
+                        }
             }
             
         }

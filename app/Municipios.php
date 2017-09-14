@@ -13,7 +13,7 @@ class Municipios extends Model
 
     public function estados()
     {
-    	return $this->belongsTo('App\Estdos','id_estado');
+    	return $this->belongsTo('App\Estados','id_estado');
     }
 
     public function parroquias()
@@ -21,8 +21,5 @@ class Municipios extends Model
     	return $this->hasMany('App\Parroquias','id','id_municipio');
     }
 
-    public function municipios($id)
-    {
-        return Municipios::where('id_estado','=',$id)->get();
-    }
+    
 }

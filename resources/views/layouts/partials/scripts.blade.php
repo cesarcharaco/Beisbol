@@ -60,8 +60,8 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 <script type="text/javascript">
   //Initialize Select2 Elements
     $('.select2').select2();
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+    //Datemask yyyy-mm-dd
+    $('#datemask').inputmask('yyyy-mm-dd', { 'placeholder': 'yyyy-mm-dd' });
     $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' });
     //Money Euro
     $('[data-mask]').inputmask();

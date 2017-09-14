@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Estados;
 use App\Municipios;
 use App\Parroquias;
+use App\Categorias;
+use App\Recaudos;
+use App\Representantes;
+use App\Parentescos;
+use App\Http\Requests\AtletasRequest;
 
 class AtletasController extends Controller
 {
@@ -30,18 +35,27 @@ class AtletasController extends Controller
      */
     public function create()
     {
+        $parentescos=Parentescos::pluck('parentesco','id');
         $estados=Estados::pluck('estado','id');
-        return view('admin.atletas.create',compact('estados'));
+        $categorias=Categorias::all();
+        $representantes=Representantes::all();
+
+        return view('admin.atletas.create',compact('estados','categorias','representantes','parentescos'));
     }
 
-    public function obtenerMunicipios(Request $request,$id)
+    public function obtenerMunicipios($id)
     {
-        dd($request);
-        if ($request->ajax()) {
-            $municipios=Municipios::municipios($id);
-            return response()->json($municipios);
-        } 
-        
+        return  $municipios=Municipios::where('id_estado',$id)->get();
+    }
+
+    public function obtenerParroquias($id)
+    {
+        return  $parroquias=Parroquias::where('id_municipio',$id)->get();
+    }
+
+    public function buscarcategoria($edad)
+    {
+        return $categoria=Categorias::where('edad',$edad)->get();
     }
     /**
      * Store a newly created resource in storage.
@@ -49,9 +63,113 @@ class AtletasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AtletasRequest $request)
     {
-        //
+        //dd($request->id_norepresentante);
+        if ($request->cedula!="") {
+            $atleta=Atletas::where('cedula',$request->cedula)->first();
+            if (count($atleta)>0) {
+                flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
+                return redirect()->route('atletas.create')->withInput();
+            } else {
+                $atleta=Atletas::where('num_unif',$request->num_unif)->first();
+                if (count($atleta)>0) {
+                    flash("EL NÚMERO DEL UNIFORME YA SE ENCUENTRA ASIGNADO!", 'error'); 
+                    return redirect()->route('atletas.create')->withInput();
+                } else {
+                             
+
+                    //comprobando checkbox
+                    if ($request->partida_nac=="") {
+                        $partida_nac="No";
+                    } else {
+                        $partida_nac="Si";
+                    }
+
+                    if ($request->copia_ced=="") {
+                        $copia_ced="No";
+                    } else {
+                        $copia_ced="Si";
+                    }
+
+                    $recaudo=Recaudos::create(['partida_nac' => $partida_nac,
+                                                'copia_ced' => $copia_ced,
+                                                'id_tipopersona' => 4]);
+
+                    $atleta=Atletas::create(['primer_apellido' => $request->primer_apellido,
+                                             'segundo_apellido' => $request->segundo_apellido,
+                                             'primer_nombre' => $request->primer_nombre,
+                                             'segundo_nombre' => $request->segundo_nombre,
+                                             'nacionalidad' => $request->nacionalidad,
+                                             'cedula' => $request->cedula,
+                                             'fecha_nac' => $request->fecha_nac,
+                                             'genero' => $request->genero,
+                                             'id_parroquia' => $request->id_parroquia,
+                                             'num_unif' => $request->num_unif,
+                                             'id_categoria' => $request->id_categoria,
+                                             'id_recaudo' => $recaudo->id]);
+
+                    $atl_rep=\DB::table('atletas_has_representantes')->insert(array(
+                                            'id_atleta' => $atleta->id,
+                                            'id_representante' => $request->id_representante));
+
+                    $atl_rep2=\DB::table('atletas_has_representantes')->insert(array(
+                                            'id_atleta' => $atleta->id,
+                                            'id_representante' => $request->id_norepresentante));
+                    flash("REGISTRO EXITOSO!", 'success'); 
+                    return redirect()->route('atletas.index');
+                }
+                
+            }
+            
+        } else {
+            //en caso de que no posea cedula
+            $atleta=Atletas::where('num_unif',$request->num_unif)->first();
+                if (count($atleta)>0) {
+                    flash("EL NÚMERO DEL UNIFORME YA SE ENCUENTRA ASIGNADO!", 'error'); 
+                return redirect()->route('atletas.create')->withInput();
+                } else {
+                //comprobando checkbox
+                    if ($request->partida_nac=="") {
+                        $partida_nac="No";
+                    } else {
+                        $partida_nac="Si";
+                    }
+
+                    if ($request->copia_ced=="") {
+                        $copia_ced="No";
+                    } else {
+                        $copia_ced="Si";
+                    }
+
+                    $recaudo=Recaudos::create(['partida_nac' => $partida_nac,
+                                                'copia_ced' => $copia_ced,
+                                                'id_tipopersona' => 4]);
+
+                    $atleta=Atletas::create(['primer_apellido' => $request->primer_apellido,
+                                             'segundo_apellido' => $request->segundo_apellido,
+                                             'primer_nombre' => $request->primer_nombre,
+                                             'segundo_nombre' => $request->segundo_nombre,
+                                             'nacionalidad' => $request->nacionalidad,
+                                             'cedula' => $request->cedula,
+                                             'fecha_nac' => $request->fecha_nac,
+                                             'genero' => $request->genero,
+                                             'id_parroquia' => $request->id_parroquia,
+                                             'num_unif' => $request->num_unif,
+                                             'id_categoria' => $request->id_categoria,
+                                             'id_recaudo' => $recaudo->id]);
+
+                    $atl_rep=\DB::table('atletas_has_representantes')->insert(array(
+                                            'id_atleta' => $atleta->id,
+                                            'id_representante' => $request->id_representante));
+                    $atl_rep2=\DB::table('atletas_has_representantes')->insert(array(
+                                            'id_atleta' => $atleta->id,
+                                            'id_representante' => $request->id_norepresentante));
+                    flash("REGISTRO EXITOSO!", 'success'); 
+                    return redirect()->route('atletas.index');
+                }
+        }
+        
     }
 
     /**
@@ -71,9 +189,29 @@ class AtletasController extends Controller
      * @param  \App\Atletas  $atletas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Atletas $atletas)
+    public function edit($id)
     {
-        //
+        $atleta=Atletas::find($id);
+        $parentescos=Parentescos::pluck('parentesco','id');
+        $estados=Estados::pluck('estado','id');
+        $categorias=Categorias::all();
+        $representantes=Representantes::all();
+        //dd(count($atleta->representantes));
+        foreach ($representantes as $key) {
+            for ($i=0; $i < 2; $i++) { 
+                
+                if ($atleta->representantes[$i]->id==$key->id and $key->representante=="Si") {
+                    $id_representante=$key->id;
+                }
+
+                if ($atleta->representantes[$i]->id==$key->id and $key->representante=="No") {
+                    $id_norepresentante=$key->id;
+                }
+            }
+            
+        }
+        //dd($id_norepresentante);
+        return view('admin.atletas.edit',compact('estados','categorias','representantes','parentescos','atleta','id_representante','id_norepresentante'));
     }
 
     /**

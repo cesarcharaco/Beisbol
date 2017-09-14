@@ -19,4 +19,9 @@ class Representantes extends Model
     {
     	return $this->belongsTo('App\Recaudos','id_recaudo');
     }
+
+    public function atletas()
+    {
+        return $this->belongsToMany('App\Atletas','atletas_has_representantes','id_representante','id_atleta');
+    }
 }

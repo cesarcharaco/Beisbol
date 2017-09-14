@@ -1,5 +1,5 @@
-$("#estados").change(function (event) {
+$("#estados").on("change", function (event) {
 	$.get("admin/municipios/"+event.target.value+"",function (response,state) {
-		console.log(response);
+		console.log("hola");
 	});
 });

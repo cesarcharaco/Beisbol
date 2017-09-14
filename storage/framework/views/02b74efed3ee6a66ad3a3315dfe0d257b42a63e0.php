@@ -38,6 +38,7 @@
                     <th>Género</th>
                     <th>Categoría</th>
                     <th>Num. Unif.</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -47,21 +48,21 @@
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"> <?php echo e($atleta->primer_apellido); ?> <?php echo e($atleta->segundo_apellido); ?></a></td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"> <?php echo e($atleta->primer_nombre); ?> <?php echo e($atleta->segundo_nombre); ?></a></td>
                   <td>
-				<?php if($atleta->cedula!="00000000"): ?>
+				<?php if($atleta->cedula!==null): ?>
                   <a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->nacionalidad); ?> - <?php echo e($atleta->cedula); ?></a>
 				<?php endif; ?>
                   </td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->genero); ?></a></td>
-                  <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->caegorias->categoria); ?></a></td>
+                  <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->categorias->categoria); ?></a></td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->num_unif); ?></a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('<?php echo e($atleta->primer_apellido); ?> <?php echo e($atleta->segundo_apellido); ?>','<?php echo e($atleta->primer_nombre); ?> <?php echo e($atleta->segundo_nombre); ?>','<?php echo e($atleta->nacionalidad); ?>-<?php echo e($atleta->cedula); ?>','<?php echo e($atleta->fecha_nac); ?>','<?php echo e($atleta->genero); ?>','<?php echo e($atleta->paroquias->parroquia); ?>,<?php echo e($atleta->parroquias->municipios->municipio); ?>,<?php echo e($atleta->parroquias->municipios->estados->estado); ?>','<?php echo e($atleta->num_unif); ?>','<?php echo e($atleta->categorias->categoria); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('<?php echo e($atleta->primer_apellido); ?> <?php echo e($atleta->segundo_apellido); ?>','<?php echo e($atleta->primer_nombre); ?> <?php echo e($atleta->segundo_nombre); ?>','<?php echo e($atleta->nacionalidad); ?>-<?php echo e($atleta->cedula); ?>','<?php echo e($atleta->fecha_nac); ?>','<?php echo e($atleta->genero); ?>','<?php echo e($atleta->parroquias->parroquia); ?>,<?php echo e($atleta->parroquias->municipios->municipio); ?>,<?php echo e($atleta->parroquias->municipios->estados->estado); ?>','<?php echo e($atleta->num_unif); ?>','<?php echo e($atleta->categorias->categoria); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="<?php echo e(route('atletas.edit', [$atleta->id])); ?>"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
                       <a href="<?php echo e(route('atletas.destroy', [$atleta->id])); ?>"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
-                      <br><br>
+                      
                     </div>
                   </td>
                 </tr>
@@ -76,6 +77,7 @@
                     <th>Género</th>
                     <th>Categoría</th>
                     <th>Num. Unif.</th>
+                    <th></th>
                   </tr>
               </tfoot>
             </table>

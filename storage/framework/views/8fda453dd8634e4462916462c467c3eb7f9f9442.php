@@ -1,38 +1,33 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content-header">
     <h1>
         Atletas
-        <small>Nuevo</small>
+        <small>Actualización</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Atletas</a></li>
-        <li class="active">Nuevo</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Atletas</a></li>
+        <li class="active">Actualizando</li>
     </ol>
 </section>
 <div class="container">
     <div class="row">
         <div class="col-xs-11">
-            @include('alerts.requests')
-            @include('flash::message')
+            <?php echo $__env->make('alerts.requests', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <div class="panel panel-default">
-                <div class="panel-heading">Registro de Atletas<br>
+                <div class="panel-heading">Actualización del Atletas<br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">
-                <div class="form-group">
-    <a href="#" ><button style="padding: 10px 10px 10px 10px;"  class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal" title="Presionando este botón puede registrar el representante" ><i class="fa fa-user-plus"></i> Registrar Representante</button></a>
-                      <br><br>
-</div>
-                    {!! Form::open(['route' => ['atletas.store'], 'method' => 'post']) !!}
+                   <?php echo Form::open(['route' => ['atletas.update',$atleta->id], 'method' => 'put']); ?>
+
     
-                         @include('admin.atletas.partials.create-fields')
+                         <?php echo $__env->make('admin.atletas.partials.edit-fields', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Enviar</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ url('admin/atletas')}}"><i class="fa fa-times"></i> Cancelar</a>
+                        <a class="btn btn-danger pull-right btn-flat" href="<?php echo e(url('admin/atletas')); ?>"><i class="fa fa-times"></i> Cancelar</a>
                       </div>
-                    {!! Form::close() !!} 
+                    <?php echo Form::close(); ?> 
                         <!-- /.form-group -->
                 </div>
             </div>
@@ -41,35 +36,8 @@
     </div>
 </div>
 
-<div id="myModal"  class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Registrar Representante</h4>
-                </div>
-                <div class="modal-body">
-                    Aviso: Campos con (<span style="color: red;">*</span>) son obligatorios.
-                    {!! Form::open(['route' => ['representantes.store'], 'method' => 'POST']) !!}
-                        @include('admin.representantes.partials.create-fields')
-                        <input type="hidden" name="desde" value="1">
-                        
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
-                    {!! Form::close() !!}
-
-
-                </div>
-            </div>
-        </div>
-</div>
-
-@endsection
-@section('scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
 <script type="text/javascript">
 
 
@@ -78,7 +46,7 @@ $("#estados").on("change", function (event) {
     $.get("/admin/municipios/"+id+"/buscar",function (data) {
        
 
-       $("#id_municipio").empty();
+       // $("#id_municipio").empty();
        $("#id_municipio").append('<option value="" selected disabled> Seleccione el Municipio</option>');
         
         if(data.length > 0){
@@ -102,7 +70,7 @@ $("#id_municipio").on("change", function (event) {
 
     $.get("/admin/parroquias/"+id+"/buscar",function (data) {
        
-       $("#id_parroquia").empty();
+       // $("#id_parroquia").empty();
        $("#id_parroquia").append('<option value="" selected disabled> Seleccione la Parroquia</option>');
         
         if(data.length > 0){
@@ -166,4 +134,6 @@ $("#fecha_nac").on("blur",function (event) {
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

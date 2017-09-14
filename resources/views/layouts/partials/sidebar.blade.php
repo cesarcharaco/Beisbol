@@ -50,6 +50,18 @@
                     <li><a href="{{ url('admin/atletas/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
                 </ul>
             </li>
+            <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Cuotas</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ url('admin/cuotascampeonatos') }}"><i class="fa fa-circle-o"></i> Registradas</a></li>
+                    <li><a href="{{ url('admin/cuotascampeonatos/create')}}"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                </ul>
+            </li>
             <li class="header">CONFIGURACIÓN</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

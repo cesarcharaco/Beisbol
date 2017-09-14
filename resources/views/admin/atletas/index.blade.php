@@ -40,6 +40,7 @@
                     <th>Género</th>
                     <th>Categoría</th>
                     <th>Num. Unif.</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,21 +50,21 @@
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}"> {{$atleta->primer_apellido}} {{$atleta->segundo_apellido}}</a></td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}"> {{$atleta->primer_nombre}} {{$atleta->segundo_nombre}}</a></td>
                   <td>
-				@if($atleta->cedula!="00000000")
+				@if($atleta->cedula!==null)
                   <a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->nacionalidad}} - {{$atleta->cedula}}</a>
 				@endif
                   </td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->genero}}</a></td>
-                  <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->caegorias->categoria}}</a></td>
+                  <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->categorias->categoria}}</a></td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->num_unif}}</a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('{{$atleta->primer_apellido}} {{$atleta->segundo_apellido}}','{{$atleta->primer_nombre}} {{$atleta->segundo_nombre}}','{{$atleta->nacionalidad}}-{{$atleta->cedula}}','{{$atleta->fecha_nac}}','{{$atleta->genero}}','{{$atleta->paroquias->parroquia}},{{$atleta->parroquias->municipios->municipio}},{{$atleta->parroquias->municipios->estados->estado}}','{{$atleta->num_unif}}','{{$atleta->categorias->categoria}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('{{$atleta->primer_apellido}} {{$atleta->segundo_apellido}}','{{$atleta->primer_nombre}} {{$atleta->segundo_nombre}}','{{$atleta->nacionalidad}}-{{$atleta->cedula}}','{{$atleta->fecha_nac}}','{{$atleta->genero}}','{{$atleta->parroquias->parroquia}},{{$atleta->parroquias->municipios->municipio}},{{$atleta->parroquias->municipios->estados->estado}}','{{$atleta->num_unif}}','{{$atleta->categorias->categoria}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="{{ route('atletas.edit', [$atleta->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
                       <a href="{{ route('atletas.destroy', [$atleta->id]) }}"><button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" title="Presionando este botón puede eliminar el registro" ><i class="fa fa-trash"></i></button></a>
-                      <br><br>
+                      
                     </div>
                   </td>
                 </tr>
@@ -78,6 +79,7 @@
                     <th>Género</th>
                     <th>Categoría</th>
                     <th>Num. Unif.</th>
+                    <th></th>
                   </tr>
               </tfoot>
             </table>

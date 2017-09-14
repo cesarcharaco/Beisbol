@@ -8,7 +8,7 @@ class Atletas extends Model
 {
     protected $table='atletas';
 
-    protected $fillable=['primer_apellido','segundo_apellido','primer_nombre','segundo_nombre','nacionalidad','cedula','fecha_nac','genero','id_parroquia','num_unif','id_categoria'];
+    protected $fillable=['primer_apellido','segundo_apellido','primer_nombre','segundo_nombre','nacionalidad','cedula','fecha_nac','genero','id_parroquia','num_unif','id_categoria','id_recaudo'];
 
 
     public function parroquias()
@@ -19,5 +19,15 @@ class Atletas extends Model
     public function categorias()
     {
     	return $this->belongsTo('App\Categorias','id_categoria');
+    }
+
+    public function recaudos()
+    {
+        return $this->belongsTo('App\Recaudos','id_recaudo');
+    }
+
+    public function representantes()
+    {
+        return $this->belongsToMany('App\Representantes','atletas_has_representantes','id_atleta','id_representante');
     }
 }
