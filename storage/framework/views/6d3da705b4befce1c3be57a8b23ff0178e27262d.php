@@ -15,7 +15,7 @@
             <?php echo $__env->make('alerts.requests', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <div class="panel panel-default">
-                <div class="panel-heading">Actualización del Representante<?php echo e($representante->id); ?><br>
+                <div class="panel-heading">Actualización del Representante<br>
                 Los campos con (<strong>*</strong>) son obligatorios</div>
 
                 <div class="panel-body">

@@ -1,11 +1,11 @@
 <?php $__env->startSection('content'); ?>
 <section class="content-header">
     <h1>
-        Cuotas de los Campeonatos
-        <small>Registros de Cuotas</small>
+        Pagos
+        <small>Realizar Pagos</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Cuotas de Campeonatos</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Pagos</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -31,6 +31,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                  <th>Nombres</th>
+                  <th>Cédula</th>
                     <?php $__currentLoopData = $meses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <th><?php echo e($mes->mes); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -39,17 +41,18 @@
                   </tr>
                 </thead>
                 <tbody>
-
+				
                 <?php $__currentLoopData = $poranio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr> 
                   <?php $i=1; ?>
                   <?php $__currentLoopData = $cuotascampeonatos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  
-                    <?php if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato): ?>
-                    <td><a href="<?php echo e(url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] )); ?>"> <?php echo e($key2->monto); ?></a></td>
-                  <?php $i++; ?>
-                    <?php endif; ?>
-                  
+                  	<?php $__currentLoopData = $atletas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key3): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	                    <?php if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato): ?>
+	                    
+	                    <td><a href="<?php echo e(url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] )); ?>"> <?php echo e($key2->monto); ?></a></td>
+	                  <?php $i++; ?>
+	                    <?php endif; ?>
+                  	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <td><?php echo e($key->anio); ?></td>
                   <td><?php echo e($key->campeonato); ?></td>
@@ -59,6 +62,8 @@
               </tbody>
               <tfoot>
                  <tr>
+                  <th>Nombres</th>
+                  <th>Cédula</th>
                     <?php $__currentLoopData = $meses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <th><?php echo e($mes->mes); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

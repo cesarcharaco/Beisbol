@@ -75,6 +75,22 @@ class CuotasCampeonatosController extends Controller
      */
     public function show($id)
     {
+        $cuotascampeonatos=CuotaCampeonatos::all();
+        
+        $uno="Mantenimiento";
+        $dos="Municipal";
+        $sql="SELECT * FROM cuota_campeonatos WHERE campeonato='".$uno."' or campeonato='".$dos."' group by campeonato,anio ORDER BY anio ASC ";
+        //dd($sql);
+        $poranio=DB::select($sql);
+        
+        $num=0;
+        $meses=Meses::all();
+
+        return view('admin.cuotascampeonatos.show', compact('cuotascampeonatos','num','meses','poranio'));
+    }
+
+    public function mostrar()
+    {
         
     }
 

@@ -33,7 +33,7 @@
 <div class="form-group<?php echo e($errors->has('direccion') ? 'has-error' : ''); ?>">
 	<?php echo Form::label('direccion','* Dirección'); ?>
 
-	<?php echo Form::textarea('direccion',$representante->direccion,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('apellidos') ? 'border-color: red; border: 1px solid red;': '']); ?>
+	<?php echo Form::textarea('direccion',$representante->direccion,['class' => 'form-control','required' => 'required', 'title' => 'Ingrese la dirección del Representante', 'onkeyup' => 'javascript:this.value=this.value.toUpperCase()', 'style'=>$errors->has('direccion') ? 'border-color: red; border: 1px solid red;': '']); ?>
 
 </div>
 <div class="row">

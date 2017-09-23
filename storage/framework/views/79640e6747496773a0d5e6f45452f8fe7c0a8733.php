@@ -52,7 +52,7 @@
             </li>
             <li class="active treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Cuotas</span>
+                    <i class="fa fa-money"></i> <span>Cuotas</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -60,6 +60,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="<?php echo e(url('admin/cuotascampeonatos')); ?>"><i class="fa fa-circle-o"></i> Registradas</a></li>
                     <li><a href="<?php echo e(url('admin/cuotascampeonatos/create')); ?>"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                    <li><a href="<?php echo e(url('admin/cuotascampeonatos/show')); ?>"><i class="fa fa-circle-o"></i>Pagos</a></li>
                 </ul>
             </li>
             <li class="header">CONFIGURACIÓN</li>

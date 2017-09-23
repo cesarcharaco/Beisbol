@@ -3,11 +3,11 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Cuotas de los Campeonatos
-        <small>Registros de Cuotas</small>
+        Pagos
+        <small>Realizar Pagos</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Cuotas de Campeonatos</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Pagos</a></li>
         <li class="active">Lista</li>
     </ol>
 </section>
@@ -33,6 +33,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                  <th>Nombres</th>
+                  <th>Cédula</th>
                     @foreach($meses as $mes)
                       <th>{{$mes->mes}}</th>
                     @endforeach
@@ -41,17 +43,18 @@
                   </tr>
                 </thead>
                 <tbody>
-
+				
                 @foreach($poranio as $key)
                   <tr> 
                   <?php $i=1; ?>
                   @foreach($cuotascampeonatos as $key2)
-                  
-                    @if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato)
-                    <td><a href="{{ url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] ) }}"> {{$key2->monto}}</a></td>
-                  <?php $i++; ?>
-                    @endif
-                  
+                  	@foreach($atletas as $key3)
+	                    @if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato)
+	                    
+	                    <td><a href="{{ url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] ) }}"> {{$key2->monto}}</a></td>
+	                  <?php $i++; ?>
+	                    @endif
+                  	@endforeach
                   @endforeach
                   <td>{{$key->anio}}</td>
                   <td>{{$key->campeonato}}</td>
@@ -61,6 +64,8 @@
               </tbody>
               <tfoot>
                  <tr>
+                  <th>Nombres</th>
+                  <th>Cédula</th>
                     @foreach($meses as $mes)
                       <th>{{$mes->mes}}</th>
                     @endforeach
