@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
+    <title>AdminSoft</title>
 
     <?php echo $__env->make('layouts.partials.html-header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </head>

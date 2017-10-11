@@ -13,7 +13,7 @@
 
             <div class="col-xs-12">
             <div class="form-group has-feedback<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
-                <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo e(old('email')); ?>" required >
+                <input type="email" name="email" class="form-control" placeholder="Correo" value="<?php echo e(old('email')); ?>" required >
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                 <?php if($errors->has('email')): ?>
@@ -23,7 +23,7 @@
                 <?php endif; ?>
             </div>
             <div class="form-group has-feedback<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
-                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 <?php if($errors->has('password')): ?>
                     <span class="help-block">
