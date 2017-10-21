@@ -18,10 +18,6 @@
 	{!! Form::text('cedula', null, ['class' => 'form-control','placeholder' => 'Ej: 1234567','required' => 'required', 'title' => 'Ingrese la cédula del representante sin separación por punto(.) o espacios','maxlength' => '8', 'style'=>$errors->has('cedula') ? 'border-color: red; border: 1px solid red;': '']) !!}
 </div>
 
-<div class="form-group{{ $errors->has('id_parentesco') ? ' has-error' : '' }}">
-	{!! Form::label('consulta','* Parentesco') !!}<br>
-	{!! Form::select('id_parentesco',$parentescos,null,['class' => 'form control select2', 'title' => 'Seleccione el Parentesco', 'required' => 'required']) !!}
-</div>
 
 <div class="form-group{{ $errors->has('direccion') ? 'has-error' : ''}}">
 	{!! Form::label('direccion','* Dirección')  !!}

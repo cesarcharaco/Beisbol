@@ -8,7 +8,7 @@ class CuotaCampeonatos extends Model
 {
     protected $table='cuota_campeonatos';
 
-    protected $fillable=['monto','campeonato','anio','id_mes'];
+    protected $fillable=['monto','anio','campeonato'];
 
     public function recibospagos()
     {

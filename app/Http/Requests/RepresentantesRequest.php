@@ -30,8 +30,7 @@ class RepresentantesRequest extends FormRequest
             'cedula' => 'required|digits_between:6,8|numeric',
             'direccion' => 'required',
             'cod1' => 'required|numeric',
-            'telf1' => 'required|digits_between:6,8|numeric',
-            'id_parentesco' => 'required'
+            'telf1' => 'required|digits_between:6,8|numeric'
         ];
     }
 
@@ -45,8 +44,7 @@ class RepresentantesRequest extends FormRequest
             'cedula.digits_between' => 'La cédula debe contener entre 6 y 8 dígitos',
             'cedula.numeric' => 'La cédula debe contener solo numeros',
             'cod1.required' => 'Debe seleccionar el código del teléfono principal',
-            'telf1.required' => 'El número de teléfono es obligatorio',
-            'id_parentesco.required' => 'Debe seleccionar el parentesco'
+            'telf1.required' => 'El número de teléfono es obligatorio'
         ];
     }
 }

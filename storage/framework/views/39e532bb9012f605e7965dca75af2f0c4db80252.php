@@ -24,11 +24,6 @@
 
 </div>
 
-<div class="form-group<?php echo e($errors->has('id_parentesco') ? ' has-error' : ''); ?>">
-	<?php echo Form::label('consulta','* Parentesco'); ?><br>
-	<?php echo Form::select('id_parentesco',$parentescos,null,['class' => 'form control select2', 'title' => 'Seleccione el Parentesco', 'required' => 'required']); ?>
-
-</div>
 
 <div class="form-group<?php echo e($errors->has('direccion') ? 'has-error' : ''); ?>">
 	<?php echo Form::label('direccion','* Dirección'); ?>

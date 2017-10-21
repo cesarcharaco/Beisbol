@@ -37,7 +37,6 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
                     <th>Telf1</th>
                     <th>Es Reptt?</th>
                   </tr>
@@ -46,17 +45,15 @@
                 @foreach($representantes as $representante)
                 <tr>
                   <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->nombres}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->apellidos}}</a></td>
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->nacionalidad}} - {{$representante->cedula}}</a></td>
+                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->datospersonales->nombres}}</a></td>
+                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->datospersonales->apellidos}}</a></td>
+                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->datospersonales->nacionalidad}} - {{$representante->datospersonales->cedula}}</a></td>
                   
-                 <td><a href="{{ route('representantes.edit', [$representante->id] ) }}"> {{$representante->parentescos->parentesco}}</a></td>
-                  
-                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->cod1}} - {{$representante->telf1}}</a></td>
+                  <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->datospersonales->cod1}} - {{$representante->datospersonales->telf1}}</a></td>
                   <td><a href="{{ route('representantes.edit', [$representante->id] ) }}">{{$representante->representante}}</a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('{{$representante->nombres}}','{{$representante->apellidos}}','{{$representante->nacionalidad}}-{{$representante->cedula}}','{{$representante->parentescos->parentesco}}','{{$representante->direccion}}','{{$representante->cod1}} - {{$representante->telf1}}','{{$representante->cod2}} - {{$representante->telf2}}','{{$representante->correo}}','{{$representante->representante}}','{{$representante->recaudos->copia_ced}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('{{$representante->datospersonales->nombres}}','{{$representante->datospersonales->apellidos}}','{{$representante->datospersonales->nacionalidad}}-{{$representante->datospersonales->cedula}}','{{$representante->datospersonales->direccion}}','{{$representante->datospersonales->cod1}} - {{$representante->datospersonales->telf1}}','{{$representante->datospersonales->cod2}} - {{$representante->datospersonales->telf2}}','{{$representante->datospersonales->correo}}','{{$representante->datospersonales->representante}}','{{$representante->recaudos->copia_ced}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="{{ route('representantes.edit', [$representante->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -73,7 +70,6 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
                     <th>Telf1</th>
                     <th>Es Reptt?</th>
                   </tr>
@@ -131,9 +127,6 @@
         <strong>Apellidos: </strong>
         <p id="apellidos"><span></span></p>
         <br>
-        <strong>Parentesco: </strong>
-        <p id="parentesco"><span></span></p>
-        <br>
         <strong>Dirección: </strong>
         <p id="direccion"><span></span></p>
         <br>
@@ -166,12 +159,11 @@
   {
     $("#representante").val(id);
   }
-  function mostrardatos(nombres,apellidos,cedula,parentesco,direccion,telf1,telf2,correo,representante,copia_ced) 
+  function mostrardatos(nombres,apellidos,cedula,direccion,telf1,telf2,correo,representante,copia_ced) 
   {
     $('#cedula').text(cedula);
     $('#nombres').text(nombres);
     $('#apellidos').text(apellidos);
-    $('#parentesco').text(parentesco);
     $('#direccion').text(direccion);
     $('#telf1').text(telf1);
     $('#telf2').text(telf2);

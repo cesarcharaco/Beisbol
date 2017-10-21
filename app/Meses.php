@@ -12,7 +12,7 @@ class Meses extends Model
 
     public function pagos()
     {
-    	return $this->belongsToMany('App\Pagos','pagos_meses','id_mes','id_pago');
+    	return $this->hasMany('App\Pagos','id_mes','id');
     }
 
     

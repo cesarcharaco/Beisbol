@@ -35,7 +35,6 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
                     <th>Telf1</th>
                     <th>Es Reptt?</th>
                   </tr>
@@ -44,17 +43,15 @@
                 <?php $__currentLoopData = $representantes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $representante): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                   <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($num=$num+1); ?></a></td>
-                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"> <?php echo e($representante->nombres); ?></a></td>
-                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"> <?php echo e($representante->apellidos); ?></a></td>
-                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($representante->nacionalidad); ?> - <?php echo e($representante->cedula); ?></a></td>
+                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"> <?php echo e($representante->datospersonales->nombres); ?></a></td>
+                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"> <?php echo e($representante->datospersonales->apellidos); ?></a></td>
+                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($representante->datospersonales->nacionalidad); ?> - <?php echo e($representante->datospersonales->cedula); ?></a></td>
                   
-                 <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"> <?php echo e($representante->parentescos->parentesco); ?></a></td>
-                  
-                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($representante->cod1); ?> - <?php echo e($representante->telf1); ?></a></td>
+                  <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($representante->datospersonales->cod1); ?> - <?php echo e($representante->datospersonales->telf1); ?></a></td>
                   <td><a href="<?php echo e(route('representantes.edit', [$representante->id] )); ?>"><?php echo e($representante->representante); ?></a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('<?php echo e($representante->nombres); ?>','<?php echo e($representante->apellidos); ?>','<?php echo e($representante->nacionalidad); ?>-<?php echo e($representante->cedula); ?>','<?php echo e($representante->parentescos->parentesco); ?>','<?php echo e($representante->direccion); ?>','<?php echo e($representante->cod1); ?> - <?php echo e($representante->telf1); ?>','<?php echo e($representante->cod2); ?> - <?php echo e($representante->telf2); ?>','<?php echo e($representante->correo); ?>','<?php echo e($representante->representante); ?>','<?php echo e($representante->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('<?php echo e($representante->datospersonales->nombres); ?>','<?php echo e($representante->datospersonales->apellidos); ?>','<?php echo e($representante->datospersonales->nacionalidad); ?>-<?php echo e($representante->datospersonales->cedula); ?>','<?php echo e($representante->datospersonales->direccion); ?>','<?php echo e($representante->datospersonales->cod1); ?> - <?php echo e($representante->datospersonales->telf1); ?>','<?php echo e($representante->datospersonales->cod2); ?> - <?php echo e($representante->datospersonales->telf2); ?>','<?php echo e($representante->datospersonales->correo); ?>','<?php echo e($representante->datospersonales->representante); ?>','<?php echo e($representante->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="<?php echo e(route('representantes.edit', [$representante->id])); ?>"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
@@ -71,7 +68,6 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Cédula</th>
-                    <th>Parentesco</th>
                     <th>Telf1</th>
                     <th>Es Reptt?</th>
                   </tr>
@@ -131,9 +127,6 @@
         <strong>Apellidos: </strong>
         <p id="apellidos"><span></span></p>
         <br>
-        <strong>Parentesco: </strong>
-        <p id="parentesco"><span></span></p>
-        <br>
         <strong>Dirección: </strong>
         <p id="direccion"><span></span></p>
         <br>
@@ -166,12 +159,11 @@
   {
     $("#representante").val(id);
   }
-  function mostrardatos(nombres,apellidos,cedula,parentesco,direccion,telf1,telf2,correo,representante,copia_ced) 
+  function mostrardatos(nombres,apellidos,cedula,direccion,telf1,telf2,correo,representante,copia_ced) 
   {
     $('#cedula').text(cedula);
     $('#nombres').text(nombres);
     $('#apellidos').text(apellidos);
-    $('#parentesco').text(parentesco);
     $('#direccion').text(direccion);
     $('#telf1').text(telf1);
     $('#telf2').text(telf2);

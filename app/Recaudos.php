@@ -10,9 +10,9 @@ class Recaudos extends Model
 
     protected $fillable=['partida_nac','copia_ced','id_tipopersona'];
 
-    public function tipopersonas()
+    public function tipospersonas()
     {
-    	return $this->belongsTo('App\TipoPersonas','id_tipopersona');
+    	return $this->belongsTo('App\TiposPersonas','id_tipopersona');
     }
 
     public function representantes()
