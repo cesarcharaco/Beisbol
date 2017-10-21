@@ -19,7 +19,7 @@ class CreateRecaudosTable extends Migration
             $table->string('copia_ced',2);
             $table->integer('id_tipopersona')->unsigned();
 
-            $table->foreign('id_tipopersona')->references('id')->on('tipo_personas')->onDelete('cascade');
+            $table->foreign('id_tipopersona')->references('id')->on('tipos_personas')->onDelete('cascade');
             $table->timestamps();
         });
     }

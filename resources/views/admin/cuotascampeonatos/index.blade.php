@@ -37,7 +37,8 @@
                       <th>{{$mes->mes}}</th>
                     @endforeach
                     <th>Año</th>
-                    <th>Campeonato</th>
+                    <th>Municipal</th>
+                    <th>Mantenimiento</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,10 +55,18 @@
                   
                   @endforeach
                   <td>{{$key->anio}}</td>
-                  <td>{{$key->campeonato}}</td>
+                 <td>{{$key->campeonato}}</td>
+                 <td>
+                 @if($mantenimiento!=null)
+                  <a href="{{ url('admin/cuotascampeonatos/editar', [12,$key->anio,'Mantenimiento'] ) }}">{{$mantenimiento->monto}}</a>
+                 @else
+                 Sin Cuota
+                  @endif
+                 </td>
 
                   </tr>
                 @endforeach
+
               </tbody>
               <tfoot>
                  <tr>
@@ -65,7 +74,8 @@
                       <th>{{$mes->mes}}</th>
                     @endforeach
                     <th>Año</th>
-                    <th>Campeonato</th>
+                    <th>Municipal</th>
+                    <th>Mantenimiento</th>
                   </tr>
               </tfoot>
             </table>

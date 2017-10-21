@@ -28,6 +28,11 @@ class Atletas extends Model
 
     public function representantes()
     {
-        return $this->belongsToMany('App\Representantes','atletas_has_representantes','id_atleta','id_representante');
+        return $this->belongsToMany('App\Representantes','atletas_has_representantes','id_atleta','id_representante')->withPivot('id_parentesco');
+    }
+
+    public function parentescos()
+    {
+        return $this->belongsToMany('App\Parentescos','atletas_has_representantes','id_atleta','id_parentesco')->withPivot('id_representante');
     }
 }

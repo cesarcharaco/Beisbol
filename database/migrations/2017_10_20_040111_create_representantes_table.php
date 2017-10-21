@@ -15,22 +15,11 @@ class CreateRepresentantesTable extends Migration
     {
         Schema::create('representantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombres',255);
-            $table->string('apellidos',255);
-            $table->string('nacionalidad',2);
-            $table->string('cedula');
-            $table->text('direccion');
-            $table->string('cod1',4);
-            $table->string('telf1',7);
-            $table->string('cod2',4);
-            $table->string('telf2',7);
-            $table->string('correo',255);
-            $table->integer('id_parentesco')->unsigned();
-            $table->enum('representante',['Si','No']);
+            $table->integer('id_datopersonal')->unsigned();
+            $table->string('representante',2);
             $table->integer('id_recaudo')->unsigned();
-            
 
-            $table->foreign('id_parentesco')->references('id')->on('parentescos')->onDelete('cascade');
+            $table->foreign('id_datopersonal')->references('id')->on('datos_personales')->onDelete('cascade');
             $table->foreign('id_recaudo')->references('id')->on('recaudos')->onDelete('cascade');
             $table->timestamps();
         });

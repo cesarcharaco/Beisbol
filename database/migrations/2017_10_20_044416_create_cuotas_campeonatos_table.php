@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecibosPagosTable extends Migration
+class CreateCuotasCampeonatosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateRecibosPagosTable extends Migration
      */
     public function up()
     {
-        Schema::create('recibos_pagos', function (Blueprint $table) {
+        Schema::create('cuotas_campeonatos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('numero');
-            $table->enum('estado',['Libre','Cancelada','Anulada']);
+            $table->float('monto');
+            $table->string('anio',4);
+            $table->enum('campeonato',['Municipal','Mantenimiento']);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateRecibosPagosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recibos_pagos');
+        Schema::dropIfExists('cuotas_campeonatos');
     }
 }

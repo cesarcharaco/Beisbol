@@ -30,11 +30,14 @@
           </div>
             </div>
               <div class="box-body">
+              <div style="overflow: scroll;">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                  <th></th>
+                  <th>Num</th>
                   <th>Nombres</th>
-                  <th>Cédula</th>
+                  <th>Representante</th>
                     @foreach($meses as $mes)
                       <th>{{$mes->mes}}</th>
                     @endforeach
@@ -43,29 +46,26 @@
                   </tr>
                 </thead>
                 <tbody>
-				
-                @foreach($poranio as $key)
-                  <tr> 
-                  <?php $i=1; ?>
-                  @foreach($cuotascampeonatos as $key2)
-                  	@foreach($atletas as $key3)
-	                    @if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato)
-	                    
-	                    <td><a href="{{ url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] ) }}"> {{$key2->monto}}</a></td>
-	                  <?php $i++; ?>
-	                    @endif
-                  	@endforeach
+				          @foreach($atletas as $key)
+                    <tr>
+                      <td>{{$num=$num+1}}</td>
+                      <td>{{$key->num_unif}}</td>
+                      <td>{{$key->primer_apellido}}, {{$key->primer_nombre}}</td>
+                      <td></td>
+                      @foreach($meses as $mes)
+                      <td></td>
+                    @endforeach
+                      <td></td>
+                      <td></td>
+                    </tr>
                   @endforeach
-                  <td>{{$key->anio}}</td>
-                  <td>{{$key->campeonato}}</td>
-
-                  </tr>
-                @endforeach
-              </tbody>
+                </tbody>
               <tfoot>
                  <tr>
+                  <th></th>
+                  <th>Num</th>
                   <th>Nombres</th>
-                  <th>Cédula</th>
+                  <th>Representante</th>
                     @foreach($meses as $mes)
                       <th>{{$mes->mes}}</th>
                     @endforeach
@@ -74,6 +74,7 @@
                   </tr>
               </tfoot>
             </table>
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagosCampTable extends Migration
+class CreateCampeonatosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePagosCampTable extends Migration
      */
     public function up()
     {
-        Schema::create('pagos_camp', function (Blueprint $table) {
+        Schema::create('campeonatos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_recibopago')->unsigned();
             $table->integer('id_cuotacamp')->unsigned();
+            $table->integer('id_estadopago')->unsigned();
 
-            $table->foreign('id_recibopago')->references('id')->on('recibos_pagos')->onDelete('cascade');
-            $table->foreign('id_cuotacamp')->references('id')->on('cuota_campeonatos')->onDelete('cascade');
+            $table->foreign('id_cuotacamp')->references('id')->on('cuotas_campeonatos')->onDelete('cascade');
+            $table->foreign('id_estadopago')->references('id')->on('estados_pagos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreatePagosCampTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos_camp');
+        Schema::dropIfExists('campeonatos');
     }
 }

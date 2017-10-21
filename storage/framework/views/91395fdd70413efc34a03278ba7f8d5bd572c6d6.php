@@ -28,11 +28,14 @@
           </div>
             </div>
               <div class="box-body">
+              <div style="overflow: scroll;">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                  <th></th>
+                  <th>Num</th>
                   <th>Nombres</th>
-                  <th>Cédula</th>
+                  <th>Representante</th>
                     <?php $__currentLoopData = $meses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <th><?php echo e($mes->mes); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -41,29 +44,26 @@
                   </tr>
                 </thead>
                 <tbody>
-				
-                <?php $__currentLoopData = $poranio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <tr> 
-                  <?php $i=1; ?>
-                  <?php $__currentLoopData = $cuotascampeonatos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  	<?php $__currentLoopData = $atletas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key3): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-	                    <?php if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato): ?>
-	                    
-	                    <td><a href="<?php echo e(url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] )); ?>"> <?php echo e($key2->monto); ?></a></td>
-	                  <?php $i++; ?>
-	                    <?php endif; ?>
-                  	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+				          <?php $__currentLoopData = $atletas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                      <td><?php echo e($num=$num+1); ?></td>
+                      <td><?php echo e($key->num_unif); ?></td>
+                      <td><?php echo e($key->primer_apellido); ?>, <?php echo e($key->primer_nombre); ?></td>
+                      <td></td>
+                      <?php $__currentLoopData = $meses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <td></td>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      <td></td>
+                      <td></td>
+                    </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  <td><?php echo e($key->anio); ?></td>
-                  <td><?php echo e($key->campeonato); ?></td>
-
-                  </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-              </tbody>
+                </tbody>
               <tfoot>
                  <tr>
+                  <th></th>
+                  <th>Num</th>
                   <th>Nombres</th>
-                  <th>Cédula</th>
+                  <th>Representante</th>
                     <?php $__currentLoopData = $meses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <th><?php echo e($mes->mes); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -72,6 +72,7 @@
                   </tr>
               </tfoot>
             </table>
+            </div>
           </div>
         </div>
       </div>

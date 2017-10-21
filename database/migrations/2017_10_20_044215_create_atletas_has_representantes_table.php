@@ -17,9 +17,11 @@ class CreateAtletasHasRepresentantesTable extends Migration
             $table->increments('id');
             $table->integer('id_atleta')->unsigned();
             $table->integer('id_representante')->unsigned();
+            $table->integer('id_parentesco')->unsigned();
 
             $table->foreign('id_atleta')->references('id')->on('atletas')->onDelete('cascade');
             $table->foreign('id_representante')->references('id')->on('representantes')->onDelete('cascade');
+            $table->foreign('id_parentesco')->references('id')->on('parentescos')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -35,7 +35,8 @@
                       <th><?php echo e($mes->mes); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <th>Año</th>
-                    <th>Campeonato</th>
+                    <th>Municipal</th>
+                    <th>Mantenimiento</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -52,10 +53,18 @@
                   
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <td><?php echo e($key->anio); ?></td>
-                  <td><?php echo e($key->campeonato); ?></td>
+                 <td><?php echo e($key->campeonato); ?></td>
+                 <td>
+                 <?php if($mantenimiento!=null): ?>
+                  <a href="<?php echo e(url('admin/cuotascampeonatos/editar', [12,$key->anio,'Mantenimiento'] )); ?>"><?php echo e($mantenimiento->monto); ?></a>
+                 <?php else: ?>
+                 Sin Cuota
+                  <?php endif; ?>
+                 </td>
 
                   </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
               </tbody>
               <tfoot>
                  <tr>
@@ -63,7 +72,8 @@
                       <th><?php echo e($mes->mes); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <th>Año</th>
-                    <th>Campeonato</th>
+                    <th>Municipal</th>
+                    <th>Mantenimiento</th>
                   </tr>
               </tfoot>
             </table>

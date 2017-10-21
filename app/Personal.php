@@ -8,10 +8,15 @@ class Personal extends Model
 {
     protected $table='personal';
 
-    protected $fillable=['nombres','apellidos','nacionalidad','cedula','cod1','telf1','cod2','telf2','correo','direccion','id_recaudo'];
+    protected $fillable=['id_datopersonal','id_recaudo'];
 
     public function recaudos()
     {
     	return $this->belongsTo('App\Recaudos','id_recaudo');
+    }
+
+    public function datospersonales()
+    {
+    	return $this->belongsTo('App\DatosPersonales','id_datopersonal');
     }
 }

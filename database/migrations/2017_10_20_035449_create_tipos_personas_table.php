@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCuotaMensualTable extends Migration
+class CreateTiposPersonasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateCuotaMensualTable extends Migration
      */
     public function up()
     {
-        Schema::create('cuota_mensual', function (Blueprint $table) {
+        Schema::create('tipos_personas', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('monto');
-            $table->integer('id_mes')->unsigned();
-            $table->string('anio',4);
-
-            $table->foreign('id_mes')->references('id')->on('meses')->onDelete('cascade');
+            $table->enum('tipo',['Entrenador(a)','Técnico(a)','Delegado(a)','Atleta','Representante']);
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateCuotaMensualTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuota_mensual');
+        Schema::dropIfExists('tipos_personas');
     }
 }

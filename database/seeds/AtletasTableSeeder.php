@@ -32,11 +32,42 @@ class AtletasTableSeeder extends Seeder
 		        ));
 	    \DB::table('atletas_has_representantes')->insert(array(
 	        	'id_atleta' => 1,
-	        	'id_representante' => 2
+	        	'id_representante' => 1,
+	        	'id_parentesco' => 1
 	    ));
 	    \DB::table('atletas_has_representantes')->insert(array(
 	        	'id_atleta' => 1,
-	        	'id_representante' => 3
+	        	'id_representante' => 2,
+	        	'id_parentesco' => 1
+	    ));
+	    \DB::table('recaudos')->insert(array(
+	        	'partida_nac' => 'No',
+	        	'copia_ced' => 'Si',
+	        	'id_tipopersona' => 4
+	    ));
+        \DB::table('atletas')->insert(array(
+	        	'primer_apellido' => 'CARLOS',
+	        	'segundo_apellido' => '',
+	        	'primer_nombre' => 'BAUTE',
+	        	'segundo_nombre' => '',
+	        	'nacionalidad' => 'V',
+	        	'cedula' => '12343399',
+	        	'fecha_nac' => '2010-01-01',
+	        	'genero' => 'M',
+	        	'id_parroquia' => 79,
+	        	'num_unif' => '16',
+	        	'id_categoria' => 4,
+	        	'id_recaudo' => 8
+		        ));
+	    \DB::table('atletas_has_representantes')->insert(array(
+	        	'id_atleta' => 2,
+	        	'id_representante' => 2,
+	        	'id_parentesco' => 2
+	    ));
+	    \DB::table('atletas_has_representantes')->insert(array(
+	        	'id_atleta' => 2,
+	        	'id_representante' => 3,
+	        	'id_parentesco' => 1
 	    ));
     }
 }

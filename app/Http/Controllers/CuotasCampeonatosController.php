@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Meses;
 use App\CuotaCampeonatos;
+use App\Atletas;
 use App\Http\Requests\CuotasCampeonatosRequest;
 use DB;
 class CuotasCampeonatosController extends Controller
@@ -20,14 +21,15 @@ class CuotasCampeonatosController extends Controller
         
         $uno="Mantenimiento";
         $dos="Municipal";
-        $sql="SELECT * FROM cuota_campeonatos WHERE campeonato='".$uno."' or campeonato='".$dos."' group by campeonato,anio ORDER BY anio ASC ";
+        $sql="SELECT * FROM cuota_campeonatos WHERE campeonato='".$dos."' group by campeonato,anio ORDER BY anio ASC ";
         //dd($sql);
         $poranio=DB::select($sql);
-        
+        $anio=date('Y');
+        $mantenimiento=CuotaCampeonatos::where('anio',$anio)->where('campeonato',$uno)->get()->last();
         $num=0;
         $meses=Meses::all();
 
-        return view('admin.cuotascampeonatos.index', compact('cuotascampeonatos','num','meses','poranio'));
+        return view('admin.cuotascampeonatos.index', compact('cuotascampeonatos','num','meses','poranio','mantenimiento'));
     }
 
     /**
@@ -55,12 +57,22 @@ class CuotasCampeonatosController extends Controller
             flash("YA HAN SIDO REGISTRADAS LAS CUOTAS DEL AÑO ".$request->anio." Y EL CAMPEONATO ".$request->campeonato.", DEBERÁ MODIFICARLAS DESDE LA LISTA PRINCIPAL!", 'error'); 
             return redirect()->route('cuotascampeonatos.create')->withInput();
         } else {
-            for($i=1;$i<=12;$i++){
+
+            if ($request->campeonato=="Municipal") {
+                for($i=1;$i<=12;$i++){
                 $cuotascampeonato=CuotaCampeonatos::create(['monto' => $request->monto,
                                                             'campeonato' => $request->campeonato,
                                                             'anio' => $request->anio,
                                                             'id_mes' => $i]);
+                }
+            } else {
+                $cuotascampeonato=CuotaCampeonatos::create(['monto' => $request->monto,
+                                                            'campeonato' => $request->campeonato,
+                                                            'anio' => $request->anio,
+                                                            'id_mes' => 12]);
             }
+            
+            
             flash("REGISTRO EXITOSO!", 'success'); 
             return redirect()->route('cuotascampeonatos.index');
         }
@@ -85,8 +97,8 @@ class CuotasCampeonatosController extends Controller
         
         $num=0;
         $meses=Meses::all();
-
-        return view('admin.cuotascampeonatos.show', compact('cuotascampeonatos','num','meses','poranio'));
+        $atletas=Atletas::all();
+        return view('admin.cuotascampeonatos.show', compact('cuotascampeonatos','num','meses','poranio','atletas'));
     }
 
     public function mostrar()
@@ -102,6 +114,7 @@ class CuotasCampeonatosController extends Controller
      */
     public function edit($id)
     {
+        //dd($id);
         $cuotacampeonato=CuotaCampeonatos::find($id);
 
         return view('admin.cuotascampeonatos.edit', compact('cuotacampeonato'));
@@ -109,6 +122,7 @@ class CuotasCampeonatosController extends Controller
 
     public function editar($id_mes,$anio,$campeonato)
     {
+        //dd($campeonato);
         $cuotacampeonato=CuotaCampeonatos::where('id_mes',$id_mes)->where('anio',$anio)->where('campeonato',$campeonato)->first();
 
         return view('admin.cuotascampeonatos.edit', compact('cuotacampeonato'));   
@@ -122,12 +136,12 @@ class CuotasCampeonatosController extends Controller
      */
     public function update(CuotasCampeonatosRequest $request, $id)
     {
+        //dd($id);
         $buscar=CuotaCampeonatos::find($id);
-        for($i=$buscar->id_mes;$i<=12;$i++){
-                $buscar2=CuotaCampeonatos::where('id_mes',$i)->where('anio',$request->anio)->where('campeonato',$request->campeonato)->first();
-                $buscar2->monto=$request->monto;
-                $buscar2->save();
-            }
+        dd($buscar->monto);
+                $buscar->monto=$request->monto;
+                $buscar->save();
+        
             flash("ACTUALIZACIÓN EXITOSA!", 'success'); 
             return redirect()->route('cuotascampeonatos.index');
     }
