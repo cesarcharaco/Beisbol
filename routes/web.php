@@ -27,5 +27,6 @@ Route::prefix('admin')->middleware('auth')->group( function () {
 	Route::resource('/cuotascampeonatos','CuotasCampeonatosController');
 	Route::get('/cuotascampeonatos/editar/{id_mes}/{anio}/{campeonato}','CuotasCampeonatosController@editar');
 	//Route::get('/cuotascampeonatos/mostrar','CuotasCampeonatosController@mostrar');
+	Route::resource('/pagos','PagosController');
 	
 });

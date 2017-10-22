@@ -139,7 +139,9 @@ class PersonalController extends Controller
         $personal=Personal::all();
         $buscar=0;
         $buscar2=0;
+
         foreach ($personal as $key) {
+
             if($key->datospersonales->cedula==$request->cedula and $key->id!=$id){
                 $buscar++;
             }
@@ -147,13 +149,14 @@ class PersonalController extends Controller
                 $buscar2++;
             }
         }
-        if (count($buscar)>0) {
+        
+        if ($buscar>0) {
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('personal.edit',$id)->withInput();
         } else {
 
-                $buscar2=Personal::where('correo',$request->correo)->where('id','<>',$id)->first();
-                if (count($buscar2)>0) {
+                
+                if ($buscar2>0) {
                     flash("EL CORREO ELECTRÓNICO YA HA SIDO REGISTRADO!", 'error'); 
                     return redirect()->route('personal.edit',$id)->withInput();
                 } else {
@@ -177,16 +180,16 @@ class PersonalController extends Controller
                     $recaudo->save();
                     //actualizando persona
                     $persona=Personal::find($id);
-                    $persona->nombres=$request->nombres;
-                    $persona->apellidos=$request->apellidos;
-                    $persona->nacionalidad=$request->nacionalidad;
-                    $persona->cedula=$request->cedula;
-                    $persona->direccion=$request->direccion;
-                    $persona->cod1=$request->cod1;
-                    $persona->telf1=$request->telf1;
-                    $persona->cod2=$cod2;
-                    $persona->telf2=$telf2;
-                    $persona->correo=$request->correo;
+                    $persona->datospersonales->nombres=$request->nombres;
+                    $persona->datospersonales->apellidos=$request->apellidos;
+                    $persona->datospersonales->nacionalidad=$request->nacionalidad;
+                    $persona->datospersonales->cedula=$request->cedula;
+                    $persona->datospersonales->direccion=$request->direccion;
+                    $persona->datospersonales->cod1=$request->cod1;
+                    $persona->datospersonales->telf1=$request->telf1;
+                    $persona->datospersonales->cod2=$cod2;
+                    $persona->datospersonales->telf2=$telf2;
+                    $persona->datospersonales->correo=$request->correo;
                     $persona->save();
                     flash("ACTUALIZACIÓN EXITOSA!", 'success'); 
                     return redirect()->route('personal.index');

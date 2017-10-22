@@ -12,7 +12,11 @@ use App\Recaudos;
 use App\Representantes;
 use App\Parentescos;
 use App\Http\Requests\AtletasRequest;
-
+use App\Pagos;
+use App\EstadosPagos;
+use App\Matriculas;
+use App\CuotasCampeonatos;
+use App\Campeonatos;
 class AtletasController extends Controller
 {
     /**
@@ -65,6 +69,14 @@ class AtletasController extends Controller
      */
     public function store(AtletasRequest $request)
     {
+        $anio=date('Y');
+        $pagos=Pagos::where('anio',$anio)->get();
+        $buscar=count($pagos);
+        if ($buscar==0) {
+            flash("NO ES POSIBLE REGISTRAR UN ATLETA HASTA QUE SEAN REALIZADOS LOS REGISTROS DE LOS PAGOS DE LA MATRÍCULA!", 'error'); 
+                return redirect()->route('atletas.create')->withInput();
+        } else {
+        
         //dd($request->id_norepresentante);
         if ($request->cedula!="") {
             $atleta=Atletas::where('cedula',$request->cedula)->first();
@@ -111,11 +123,45 @@ class AtletasController extends Controller
 
                     $atl_rep=\DB::table('atletas_has_representantes')->insert(array(
                                             'id_atleta' => $atleta->id,
-                                            'id_representante' => $request->id_representante));
+                                            'id_representante' => $request->id_representante,
+                                            'id_parentesco' => $request->id_parentesco1));
 
                     $atl_rep2=\DB::table('atletas_has_representantes')->insert(array(
                                             'id_atleta' => $atleta->id,
-                                            'id_representante' => $request->id_norepresentante));
+                                            'id_representante' => $request->id_norepresentante,
+                                            'id_parentesco' => $request->id_parentesco2));
+                    //registrando pagos en estado Sin Pagar
+            for ($i=1; $i <= 12; $i++) { 
+                $pago=Pagos::where('id_mes',$i)->get()->last();
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $atleta->representantes[0]->id]);
+                $matricula=Matriculas::create(['id_pago' => $pago->id,
+                                            'id_estadopago' => $estadopago->id]);
+            }
+            //registrando pago de torneos 
+            $cuotacampeonato=CuotasCampeonatos::where('anio',$anio)->where('campeonato','Municipal')->first();
+
+            if (count($cuotacampeonato)>0) {
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $atleta->representantes[0]->id]);
+                $campeonato=Campeonatos::create(['id_cuotacamp' => $cuotacampeonato->id,
+                    'id_estadopago' => $estadopago->id]);
+            }
+            
+            $cuotacampeonato2=CuotasCampeonatos::where('anio',$anio)->where('campeonato','Mantenimiento')->first();
+
+            if (count($cuotacampeonato2)>0) {
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $atleta->representantes[0]->id]);
+                $campeonato=Campeonatos::create(['id_cuotacamp' => $cuotacampeonato2->id,
+                    'id_estadopago' => $estadopago->id]);
+            }
                     flash("REGISTRO EXITOSO!", 'success'); 
                     return redirect()->route('atletas.index');
                 }
@@ -161,15 +207,50 @@ class AtletasController extends Controller
 
                     $atl_rep=\DB::table('atletas_has_representantes')->insert(array(
                                             'id_atleta' => $atleta->id,
-                                            'id_representante' => $request->id_representante));
+                                            'id_representante' => $request->id_representante,
+                                            'id_parentesco' => $request->id_parentesco1));
                     $atl_rep2=\DB::table('atletas_has_representantes')->insert(array(
                                             'id_atleta' => $atleta->id,
-                                            'id_representante' => $request->id_norepresentante));
+                                            'id_representante' => $request->id_norepresentante,
+                                            'id_parentesco' => $request->id_parentesco2));
+                     //registrando pagos en estado Sin Pagar
+            for ($i=1; $i <= 12; $i++) { 
+                $pago=Pagos::where('id_mes',$i)->get()->last();
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $atleta->representantes[0]->id]);
+                $matricula=Matriculas::create(['id_pago' => $pago->id,
+                                            'id_estadopago' => $estadopago->id]);
+            }
+            //registrando pago de torneos 
+            $cuotacampeonato=CuotasCampeonatos::where('anio',$anio)->where('campeonato','Municipal')->first();
+
+            if (count($cuotacampeonato)>0) {
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $atleta->representantes[0]->id]);
+                $campeonato=Campeonatos::create(['id_cuotacamp' => $cuotacampeonato->id,
+                    'id_estadopago' => $estadopago->id]);
+            }
+            
+            $cuotacampeonato2=CuotasCampeonatos::where('anio',$anio)->where('campeonato','Mantenimiento')->first();
+
+            if (count($cuotacampeonato2)>0) {
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $atleta->representantes[0]->id]);
+                $campeonato=Campeonatos::create(['id_cuotacamp' => $cuotacampeonato2->id,
+                    'id_estadopago' => $estadopago->id]);
+            }
+
                     flash("REGISTRO EXITOSO!", 'success'); 
                     return redirect()->route('atletas.index');
                 }
+            }
         }
-        
     }
 
     /**
@@ -192,7 +273,7 @@ class AtletasController extends Controller
     public function edit($id)
     {
         $atleta=Atletas::find($id);
-        $parentescos=Parentescos::pluck('parentesco','id');
+        $parentescos=Parentescos::all();
         $estados=Estados::pluck('estado','id');
         $categorias=Categorias::all();
         $representantes=Representantes::all();
@@ -275,7 +356,7 @@ class AtletasController extends Controller
                     //dd($sql);
                     $atl_rep=\DB::select($sql);
                     //dd($atl_rep[0]->id);  
-                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.' WHERE id='.$atl_rep[0]->id;
+                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.',id_parentesco='.$request->id_parentesco1.' WHERE id='.$atl_rep[0]->id;
                     $atl_rep_act=\DB::update($sql2);
 
                     //actualizando no representante
@@ -283,7 +364,7 @@ class AtletasController extends Controller
                     //dd($sql);
                     $atl_rep2=\DB::select($sql);
                     //dd($atl_rep[0]->id);  
-                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.' WHERE id='.$atl_rep2[0]->id;
+                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.',id_parentesco='.$request->id_parentesco2.' WHERE id='.$atl_rep2[0]->id;
                     $atl_rep_act=\DB::update($sql2);
                     
 
@@ -339,7 +420,7 @@ class AtletasController extends Controller
                     //dd($sql);
                     $atl_rep=\DB::select($sql);
                     //dd($atl_rep[0]->id);  
-                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.' WHERE id='.$atl_rep[0]->id;
+                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.',id_parentesco='.$request->id_parentesco1.' WHERE id='.$atl_rep[0]->id;
                     $atl_rep_act=\DB::update($sql2);
 
                     //actualizando no representante
@@ -347,7 +428,7 @@ class AtletasController extends Controller
                     //dd($sql);
                     $atl_rep2=\DB::select($sql);
                     //dd($atl_rep[0]->id);  
-                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.' WHERE id='.$atl_rep2[0]->id;
+                    $sql2='UPDATE atletas_has_representantes SET id_representante='.$request->id_representante.',id_parentesco='.$request->id_parentesco2.' WHERE id='.$atl_rep2[0]->id;
                     $atl_rep_act=\DB::update($sql2);
                     
 

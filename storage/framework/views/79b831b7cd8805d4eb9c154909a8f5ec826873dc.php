@@ -6,10 +6,16 @@
 	<select name="id_representante" id="id_representante" title="Seleccione el representante con el estudiante" class="form-control select2">
 		<?php $__currentLoopData = $representantes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			<?php if($key->representante=="Si"): ?>
-			<option value="<?php echo e($key->id); ?>"><?php echo e($key->apellidos); ?>,<?php echo e($key->nombres); ?> <?php echo e($key->nacionalidad); ?>-<?php echo e($key->cedula); ?></option>
+			<option value="<?php echo e($key->id); ?>"><?php echo e($key->datospersonales->apellidos); ?>,<?php echo e($key->datospersonales->nombres); ?> <?php echo e($key->datospersonales->nacionalidad); ?>-<?php echo e($key->datospersonales->cedula); ?></option>
 			<?php endif; ?>
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</select>
+</div>
+<div class="form-group">
+	<?php echo Form::label('parentesco', '&nbsp;&nbsp;Parentesco'); ?>
+
+	<?php echo Form::select('id_parentesco1',$parentescos,null,['class' => 'form-control select2', 'title' => 'Seleccione el parentesco para el primer representante']); ?>
+
 </div>
 </div>
 
@@ -20,10 +26,17 @@
 	<select name="id_norepresentante" id="id_norepresentante" title="Seleccione el otro representante con el estudiante" class="form-control select2">
 		<?php $__currentLoopData = $representantes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			<?php if($key->representante=="No"): ?>
-			<option value="<?php echo e($key->id); ?>"><?php echo e($key->apellidos); ?>,<?php echo e($key->nombres); ?> <?php echo e($key->nacionalidad); ?>-<?php echo e($key->cedula); ?></option>
+			<option value="<?php echo e($key->id); ?>"><?php echo e($key->datospersonales->apellidos); ?>,<?php echo e($key->datospersonales->nombres); ?> <?php echo e($key->datospersonales->nacionalidad); ?>-<?php echo e($key->datospersonales->cedula); ?></option>
 			<?php endif; ?>
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</select>
+</div>
+
+<div class="form-group">
+	<?php echo Form::label('parentesco', '&nbsp;&nbsp;Parentesco'); ?>
+
+	<?php echo Form::select('id_parentesco2',$parentescos,null,['class' => 'form-control select2', 'title' => 'Seleccione el parentesco para el segundo representante']); ?>
+
 </div>
 </div>
 </div>

@@ -55,7 +55,7 @@ class AtletasTableSeeder extends Seeder
 	        	'fecha_nac' => '2010-01-01',
 	        	'genero' => 'M',
 	        	'id_parroquia' => 79,
-	        	'num_unif' => '16',
+	        	'num_unif' => '64',
 	        	'id_categoria' => 4,
 	        	'id_recaudo' => 8
 		        ));

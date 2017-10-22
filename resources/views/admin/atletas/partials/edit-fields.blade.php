@@ -9,10 +9,20 @@
 			@if($key->representante=="Si")
 			<option value="{{$key->id}}"
 				@if($key->id==$id_representante) selected="selected" @endif 
-			>{{$key->apellidos}},{{$key->nombres}} {{$key->nacionalidad}}-{{$key->cedula}}</option>
+			>{{$key->datospersonales->apellidos}},{{$key->datospersonales->nombres}} {{$key->datospersonales->nacionalidad}}-{{$key->datospersonales->cedula}}</option>
 			@endif
 		@endforeach
 	</select>
+</div>
+
+<div class="form-group">
+	{!! Form::label('parentesco', '&nbsp;&nbsp;Parentesco') !!}
+	<select class="form-control select2" title="Seleccione el parentesco para el segundo representante">
+		@foreach($parentescos as $par)
+			<option value="{{$par->id}}" @if($par->id==$atleta->parentescos[0]->id) selected="selected" @endif>{{$par->parentesco}} </option>
+		@endforeach
+	</select>
+
 </div>
 </div>
 
@@ -25,8 +35,16 @@
 			@if($key->representante=="No")
 			<option value="{{$key->id}}" 
 			@if($key->id==$id_norepresentante) selected="selected" @endif 
-			>{{$key->apellidos}},{{$key->nombres}} {{$key->nacionalidad}}-{{$key->cedula}}</option>
+			>{{$key->datospersonales->apellidos}},{{$key->datospersonales->nombres}} {{$key->datospersonales->nacionalidad}}-{{$key->datospersonales->cedula}}</option>
 			@endif
+		@endforeach
+	</select>
+</div>
+<div class="form-group">
+	{!! Form::label('parentesco', '&nbsp;&nbsp;Parentesco') !!}
+	<select class="form-control select2" title="Seleccione el parentesco para el segundo representante">
+		@foreach($parentescos as $par)
+			<option value="{{$par->id}}" @if($par->id==$atleta->parentescos[1]->id) selected="selected" @endif>{{$par->parentesco}} </option>
 		@endforeach
 	</select>
 </div>

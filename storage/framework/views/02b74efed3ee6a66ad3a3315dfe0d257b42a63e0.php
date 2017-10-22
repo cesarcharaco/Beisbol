@@ -28,16 +28,19 @@
           </div>
             </div>
               <div class="box-body">
+              <div style="overflow: scroll;">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Nro</th>
+                    <th>Num. Unif.</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
                     <th>Cédula</th>
                     <th>Género</th>
                     <th>Categoría</th>
-                    <th>Num. Unif.</th>
+                    <th>Representante</th>
+                    <th>Telf.</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -45,6 +48,7 @@
                 <?php $__currentLoopData = $atletas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $atleta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($num=$num+1); ?></a></td>
+                  <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->num_unif); ?></a></td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"> <?php echo e($atleta->primer_apellido); ?> <?php echo e($atleta->segundo_apellido); ?></a></td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"> <?php echo e($atleta->primer_nombre); ?> <?php echo e($atleta->segundo_nombre); ?></a></td>
                   <td>
@@ -54,7 +58,22 @@
                   </td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->genero); ?></a></td>
                   <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->categorias->categoria); ?></a></td>
-                  <td><a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>"><?php echo e($atleta->num_unif); ?></a></td>
+                <?php $__currentLoopData = $atleta->representantes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if($key->representante=="Si"): ?>
+                    <td>
+                      <a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>">
+                        <?php echo e($key->datospersonales->nombres); ?> <?php echo e($key->datospersonales->apellidos); ?>
+
+                      </a>
+                    </td>
+                    <td>
+                      <a href="<?php echo e(route('atletas.edit', [$atleta->id] )); ?>">
+                        <?php echo e($key->datospersonales->cod1); ?>-<?php echo e($key->datospersonales->telf1); ?>
+
+                      </a>
+                    </td>
+                  <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <td>
                   <div class="btn-group">
 <a href="#"><button onclick="mostrardatos('<?php echo e($atleta->primer_apellido); ?> <?php echo e($atleta->segundo_apellido); ?>','<?php echo e($atleta->primer_nombre); ?> <?php echo e($atleta->segundo_nombre); ?>','<?php echo e($atleta->nacionalidad); ?>-<?php echo e($atleta->cedula); ?>','<?php echo e($atleta->fecha_nac); ?>','<?php echo e($atleta->genero); ?>','<?php echo e($atleta->parroquias->parroquia); ?>,<?php echo e($atleta->parroquias->municipios->municipio); ?>,<?php echo e($atleta->parroquias->municipios->estados->estado); ?>','<?php echo e($atleta->num_unif); ?>','<?php echo e($atleta->categorias->categoria); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
@@ -71,16 +90,19 @@
               <tfoot>
                  <tr>
                     <th>Nro</th>
+                    <th>Num. Unif.</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
                     <th>Cédula</th>
                     <th>Género</th>
                     <th>Categoría</th>
-                    <th>Num. Unif.</th>
+                    <th>Representante</th>
+                    <th>Telf.</th>
                     <th></th>
                   </tr>
               </tfoot>
             </table>
+            </div>
           </div>
         </div>
       </div>

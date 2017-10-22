@@ -30,16 +30,19 @@
           </div>
             </div>
               <div class="box-body">
+              <div style="overflow: scroll;">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Nro</th>
+                    <th>Num. Unif.</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
                     <th>Cédula</th>
                     <th>Género</th>
                     <th>Categoría</th>
-                    <th>Num. Unif.</th>
+                    <th>Representante</th>
+                    <th>Telf.</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -47,6 +50,7 @@
                 @foreach($atletas as $atleta)
                 <tr>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$num=$num+1}}</a></td>
+                  <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->num_unif}}</a></td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}"> {{$atleta->primer_apellido}} {{$atleta->segundo_apellido}}</a></td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}"> {{$atleta->primer_nombre}} {{$atleta->segundo_nombre}}</a></td>
                   <td>
@@ -56,7 +60,20 @@
                   </td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->genero}}</a></td>
                   <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->categorias->categoria}}</a></td>
-                  <td><a href="{{ route('atletas.edit', [$atleta->id] ) }}">{{$atleta->num_unif}}</a></td>
+                @foreach($atleta->representantes as $key)
+                  @if($key->representante=="Si")
+                    <td>
+                      <a href="{{ route('atletas.edit', [$atleta->id] ) }}">
+                        {{$key->datospersonales->nombres}} {{$key->datospersonales->apellidos}}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{ route('atletas.edit', [$atleta->id] ) }}">
+                        {{$key->datospersonales->cod1}}-{{$key->datospersonales->telf1}}
+                      </a>
+                    </td>
+                  @endif
+                @endforeach
                 <td>
                   <div class="btn-group">
 <a href="#"><button onclick="mostrardatos('{{$atleta->primer_apellido}} {{$atleta->segundo_apellido}}','{{$atleta->primer_nombre}} {{$atleta->segundo_nombre}}','{{$atleta->nacionalidad}}-{{$atleta->cedula}}','{{$atleta->fecha_nac}}','{{$atleta->genero}}','{{$atleta->parroquias->parroquia}},{{$atleta->parroquias->municipios->municipio}},{{$atleta->parroquias->municipios->estados->estado}}','{{$atleta->num_unif}}','{{$atleta->categorias->categoria}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
@@ -73,16 +90,19 @@
               <tfoot>
                  <tr>
                     <th>Nro</th>
+                    <th>Num. Unif.</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
                     <th>Cédula</th>
                     <th>Género</th>
                     <th>Categoría</th>
-                    <th>Num. Unif.</th>
+                    <th>Representante</th>
+                    <th>Telf.</th>
                     <th></th>
                   </tr>
               </tfoot>
             </table>
+            </div>
           </div>
         </div>
       </div>
