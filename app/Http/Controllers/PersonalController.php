@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Personal;
 use Illuminate\Http\Request;
 use App\Recaudos;
-use App\TipoPersonas;
+use App\TiposPersonas;
 use App\Http\Requests\PersonalRequest;
 class PersonalController extends Controller
 {
@@ -29,8 +29,8 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        $tipopersonas=TipoPersonas::where('id','<=',3)->pluck('tipo','id');
-        return view('admin.personal.create',compact('tipopersonas'));
+        $tipospersonas=TiposPersonas::where('id','<=',2)->pluck('tipo','id');
+        return view('admin.personal.create',compact('tipospersonas'));
     }
 
     /**
@@ -43,14 +43,24 @@ class PersonalController extends Controller
     {
 
          //verificando la cedula que no este registrada
-        $buscar=Personal::where('cedula',$request->cedula)->first();
-        if (count($buscar)>0) {
+        $personal=Personal::all();
+        $buscar=0;
+        $buscar2=0;
+        foreach ($personal as $key) {
+            if($key->datospersonales->cedula==$request->cedula){
+                $buscar++;
+            }
+            if ($key->datospersonales->correo==$request->correo) {
+                $buscar2++;
+            }
+        }
+        if ($buscar>0) {
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('personal.create')->withInput();
         } else {
 
-            $buscar2=Personal::where('correo',$request->correo)->first();
-            if (count($buscar2)>0) {
+            
+            if ($buscar2>0) {
                 flash("EL CORREO ELECTRÓNICO YA HA SIDO REGISTRADO!", 'error'); 
                 return redirect()->route('personal.create')->withInput();
             } else {
@@ -72,17 +82,19 @@ class PersonalController extends Controller
                                        'copia_ced' => $request->copia_ced,
                                        'id_tipopersona' => $request->id_tipopersona]);
             //registrando personal
-            $persona=Personal::create(['nombres' => $request->nombres,
-                'apellidos' => $request->apellidos,
-                'nacionalidad' => $request->nacionalidad,
-                'cedula' => $request->cedula,
-                'cod1' => $request->cod1,
-                'telf1' => $request->telf1,
-                'cod2' => $cod2,
-                'telf2' => $telf2,
-                'correo' => $request->correo,
-                'direccion' => $request->direccion,
+            $datopersonal=DatosPersonales::create(['nombres' => $request->nombres,
+                            'apellidos' => $request->apellidos,
+                            'nacionalidad' => $request->nacionalidad,
+                            'cedula' => $request->cedula,
+                            'direccion' => $request->direccion,
+                            'cod1' => $request->cod1,
+                            'telf1' => $request->telf1,
+                            'cod2' => $cod2,
+                            'telf2' => $telf2,
+                            'correo' => $request->correo]);
+            $persona=Personal::create(['id_datopersonal' => $datopersonal->id,
                 'id_recaudo' => $recaudo->id]);
+
             flash("REGISTRO EXITOSO!", 'succes'); 
             return redirect()->route('personal.index');
                 }
@@ -109,9 +121,9 @@ class PersonalController extends Controller
     public function edit($id)
     {
         $persona=Personal::find($id);
-        $tipopersonas=TipoPersonas::where('id','<=',3)->pluck('tipo','id');
+        $tipospersonas=TiposPersonas::where('id','<=',2)->pluck('tipo','id');
 
-        return view('admin.personal.edit', compact('persona','tipopersonas'));
+        return view('admin.personal.edit', compact('persona','tipospersonas'));
     }
 
     /**
@@ -124,8 +136,17 @@ class PersonalController extends Controller
     public function update(PersonalRequest $request,$id)
     {
         //verificando la cedula que no este registrada
-        $buscar=Personal::where('cedula',$request->cedula)->where('id','<>',$id)->first();
-
+        $personal=Personal::all();
+        $buscar=0;
+        $buscar2=0;
+        foreach ($personal as $key) {
+            if($key->datospersonales->cedula==$request->cedula and $key->id!=$id){
+                $buscar++;
+            }
+            if ($key->datospersonales->correo==$request->correo and $key->id!=$id) {
+                $buscar2++;
+            }
+        }
         if (count($buscar)>0) {
             flash("LA CÉDULA YA HA SIDO REGISTRADA!", 'error'); 
             return redirect()->route('personal.edit',$id)->withInput();

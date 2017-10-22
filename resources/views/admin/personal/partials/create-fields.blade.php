@@ -20,7 +20,7 @@
 
 <div class="form-group{{ $errors->has('id_tipopersona') ? ' has-error' : '' }}">
 	{!! Form::label('tipopersonal','* Tipo de Personal') !!}<br>
-	{!! Form::select('id_tipopersona',$tipopersonas,null,['class' => 'form control select2', 'title' => 'Seleccione el tipo de Personal', 'required' => 'required','style' => 'width:150px']) !!}
+	{!! Form::select('id_tipopersona',$tipospersonas,null,['class' => 'form control select2', 'title' => 'Seleccione el tipo de Personal', 'required' => 'required','style' => 'width:150px']) !!}
 </div>
 
 <div class="form-group{{ $errors->has('direccion') ? 'has-error' : ''}}">

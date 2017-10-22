@@ -53,8 +53,10 @@ class RepresentantesController extends Controller
             if($key->datospersonales->cedula==$request->cedula){
                 $buscar++;
             }
-            if ($key->datospersonales->correo==$request->correo) {
-                $buscar2++;
+            if($request->correo!=""){
+                if ($key->datospersonales->correo==$request->correo) {
+                    $buscar2++;
+                }
             }
         }
         
@@ -197,8 +199,10 @@ class RepresentantesController extends Controller
             if($key->datospersonales->cedula==$request->cedula and $key->id!=$id){
                 $buscar++;
             }
-            if ($key->datospersonales->correo==$request->correo) {
-                $buscar2++;
+            if($request->correo!=""){
+                if ($key->datospersonales->correo==$request->correo  and $key->id!=$id) {
+                    $buscar2++;
+                }
             }
         }
         

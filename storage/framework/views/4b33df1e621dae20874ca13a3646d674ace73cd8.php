@@ -44,14 +44,14 @@
                 <?php $__currentLoopData = $personal; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $persona): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                   <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($num=$num+1); ?></a></td>
-                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"> <?php echo e($persona->nombres); ?></a></td>
-                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"> <?php echo e($persona->apellidos); ?></a></td>
-                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->nacionalidad); ?> - <?php echo e($persona->cedula); ?></a></td>
-                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->cod1); ?> - <?php echo e($persona->telf1); ?></a></td>
-                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->recaudos->tipopersonas->tipo); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"> <?php echo e($persona->datospersonales->nombres); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"> <?php echo e($persona->datospersonales->apellidos); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->datospersonales->nacionalidad); ?> - <?php echo e($persona->datospersonales->cedula); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->datospersonales->cod1); ?> - <?php echo e($persona->telf1); ?></a></td>
+                  <td><a href="<?php echo e(route('personal.edit', [$persona->id] )); ?>"><?php echo e($persona->recaudos->tipospersonas->tipo); ?></a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('<?php echo e($persona->nombres); ?>','<?php echo e($persona->apellidos); ?>','<?php echo e($persona->nacionalidad); ?>-<?php echo e($persona->cedula); ?>','<?php echo e($persona->direccion); ?>','<?php echo e($persona->cod1); ?> - <?php echo e($persona->telf1); ?>','<?php echo e($persona->cod2); ?> - <?php echo e($persona->telf2); ?>','<?php echo e($persona->correo); ?>','<?php echo e($persona->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('<?php echo e($persona->datospersonales->nombres); ?>','<?php echo e($persona->datospersonales->apellidos); ?>','<?php echo e($persona->datospersonales->nacionalidad); ?>-<?php echo e($persona->datospersonales->cedula); ?>','<?php echo e($persona->datospersonales->direccion); ?>','<?php echo e($persona->datospersonales->cod1); ?> - <?php echo e($persona->datospersonales->telf1); ?>','<?php echo e($persona->datospersonales->cod2); ?> - <?php echo e($persona->datospersonales->telf2); ?>','<?php echo e($persona->datospersonales->correo); ?>','<?php echo e($persona->recaudos->copia_ced); ?>')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="<?php echo e(route('personal.edit', [$persona->id])); ?>"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 

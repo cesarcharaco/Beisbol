@@ -26,7 +26,7 @@
 
 <div class="form-group<?php echo e($errors->has('id_tipopersona') ? ' has-error' : ''); ?>">
 	<?php echo Form::label('tipopersonal','* Tipo de Personal'); ?><br>
-	<?php echo Form::select('id_tipopersona',$tipopersonas,null,['class' => 'form control select2', 'title' => 'Seleccione el tipo de Personal', 'required' => 'required','style' => 'width:150px']); ?>
+	<?php echo Form::select('id_tipopersona',$tipospersonas,null,['class' => 'form control select2', 'title' => 'Seleccione el tipo de Personal', 'required' => 'required','style' => 'width:150px']); ?>
 
 </div>
 

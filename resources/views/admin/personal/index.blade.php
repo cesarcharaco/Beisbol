@@ -46,14 +46,14 @@
                 @foreach($personal as $persona)
                 <tr>
                   <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$num=$num+1}}</a></td>
-                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}"> {{$persona->nombres}}</a></td>
-                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}"> {{$persona->apellidos}}</a></td>
-                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$persona->nacionalidad}} - {{$persona->cedula}}</a></td>
-                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$persona->cod1}} - {{$persona->telf1}}</a></td>
-                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$persona->recaudos->tipopersonas->tipo}}</a></td>
+                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}"> {{$persona->datospersonales->nombres}}</a></td>
+                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}"> {{$persona->datospersonales->apellidos}}</a></td>
+                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$persona->datospersonales->nacionalidad}} - {{$persona->datospersonales->cedula}}</a></td>
+                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$persona->datospersonales->cod1}} - {{$persona->telf1}}</a></td>
+                  <td><a href="{{ route('personal.edit', [$persona->id] ) }}">{{$persona->recaudos->tipospersonas->tipo}}</a></td>
                 <td>
                   <div class="btn-group">
-<a href="#"><button onclick="mostrardatos('{{$persona->nombres}}','{{$persona->apellidos}}','{{$persona->nacionalidad}}-{{$persona->cedula}}','{{$persona->direccion}}','{{$persona->cod1}} - {{$persona->telf1}}','{{$persona->cod2}} - {{$persona->telf2}}','{{$persona->correo}}','{{$persona->recaudos->copia_ced}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
+<a href="#"><button onclick="mostrardatos('{{$persona->datospersonales->nombres}}','{{$persona->datospersonales->apellidos}}','{{$persona->datospersonales->nacionalidad}}-{{$persona->datospersonales->cedula}}','{{$persona->datospersonales->direccion}}','{{$persona->datospersonales->cod1}} - {{$persona->datospersonales->telf1}}','{{$persona->datospersonales->cod2}} - {{$persona->datospersonales->telf2}}','{{$persona->datospersonales->correo}}','{{$persona->recaudos->copia_ced}}')" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal2" title="Presionando este botón puede ver el registro" ><i class="fa fa-eye"></i></button></a>
 
                       <a href="{{ route('personal.edit', [$persona->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
 
