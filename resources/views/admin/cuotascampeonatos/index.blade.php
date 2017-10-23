@@ -47,7 +47,9 @@
                       <td>{{$key->anio}}</td>
                       <td>{{$key->campeonato}}</td>
                       <td>{{$key->monto}}</td>
-                      <th></th>
+                      <th>
+                        <a href="{{ route('cuotascampeonatos.edit', [$key->id]) }}"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      </th>
                     </tr>
                   @endforeach
                 </tbody>

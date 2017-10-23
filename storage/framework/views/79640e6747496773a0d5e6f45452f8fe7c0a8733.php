@@ -58,9 +58,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="<?php echo e(url('admin/cuotascampeonatos')); ?>"><i class="fa fa-circle-o"></i> Registradas</a></li>
-                    <li><a href="<?php echo e(url('admin/cuotascampeonatos/create')); ?>"><i class="fa fa-circle-o"></i>Nuevo</a></li>
+                    <li class="active"><a href="<?php echo e(url('admin/cuotascampeonatos')); ?>"><i class="fa fa-circle-o"></i>Montos de Campeonatos</a></li>
                     <li><a href="<?php echo e(url('admin/pagos')); ?>"><i class="fa fa-circle-o"></i>Montos de Matrícula</a></li>
+                    <li><a href="<?php echo e(url('admin/estadospagos')); ?>"><i class="fa fa-circle-o"></i>Estado de Pagos</a></li>
                 </ul>
             </li>
         </ul>

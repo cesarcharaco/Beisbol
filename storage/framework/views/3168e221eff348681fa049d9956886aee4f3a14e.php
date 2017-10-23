@@ -35,6 +35,7 @@
                     <th>Año</th>
                     <th>Torneo</th>
                     <th>Cuota</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,9 @@
                       <td><?php echo e($key->anio); ?></td>
                       <td><?php echo e($key->campeonato); ?></td>
                       <td><?php echo e($key->monto); ?></td>
+                      <th>
+                        <a href="<?php echo e(route('cuotascampeonatos.edit', [$key->id])); ?>"><button class="btn btn-default btn-flat" title="Presionando este botón puede editar el registro"><i class="fa fa-pencil"></i></button></a>
+                      </th>
                     </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
@@ -53,6 +57,7 @@
                     <th>Año</th>
                     <th>Torneo</th>
                     <th>Cuota</th>
+                    <th></th>
                   </tr>
               </tfoot>
             </table>
