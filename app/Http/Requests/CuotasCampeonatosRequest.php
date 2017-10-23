@@ -25,8 +25,7 @@ class CuotasCampeonatosRequest extends FormRequest
     {
         return [
             'monto' => 'required',
-            'campeonato' => 'required',
-            'anio' => 'required'
+            'campeonato' => 'required'
         ];
     }
 
@@ -34,8 +33,7 @@ class CuotasCampeonatosRequest extends FormRequest
     {
         return [
             'monto.required' => 'Debe ingresar un monto',
-            'campeonato.required' => 'Debe Seleccionar un Campeonato',
-            'anio.required' => 'Debe Seleccionar un Año'
+            'campeonato.required' => 'Debe Seleccionar un Campeonato'
         ];
     }
 }

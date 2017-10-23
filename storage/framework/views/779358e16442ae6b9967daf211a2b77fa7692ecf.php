@@ -12,13 +12,4 @@
 
 </div>
 
-<div class="form-group<?php echo e($errors->has('anio') ? ' has-error' : ''); ?>">
-	<?php echo Form::label('anio','* Año'); ?>
-
-	<select name="anio" title="Seleccione el año" class="form-control">
-		<?php for($i=2017;$i<2030;$i++): ?>
-			<option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
-		<?php endfor; ?>
-	</select>
-</div>
 

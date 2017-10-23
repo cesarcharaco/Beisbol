@@ -32,21 +32,32 @@
               <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                  <tr>    
+                  <tr>
+                    <th>Num</th>
                     <th>Año</th>
                     <th>Torneo</th>
                     <th>Cuota</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-
-                
+                  @foreach($cuotascampeonatos as $key)
+                    <tr>
+                      <td>{{$num=$num+1}}</td>
+                      <td>{{$key->anio}}</td>
+                      <td>{{$key->campeonato}}</td>
+                      <td>{{$key->monto}}</td>
+                      <th></th>
+                    </tr>
+                  @endforeach
                 </tbody>
                 <tfoot>
                   <tr>
+                    <th>Num</th>
                     <th>Año</th>
                     <th>Torneo</th>
                     <th>Cuota</th>
+                    <th></th>
                   </tr>
               </tfoot>
             </table>

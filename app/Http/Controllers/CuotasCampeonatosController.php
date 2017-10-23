@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Meses;
-use App\CuotaCampeonatos;
+use App\Campeonatos;
+use App\EstadosPagos;
+use App\CuotasCampeonatos;
 use App\Atletas;
 use App\Http\Requests\CuotasCampeonatosRequest;
 use DB;
@@ -17,19 +18,9 @@ class CuotasCampeonatosController extends Controller
      */
     public function index()
     {
-        $cuotascampeonatos=CuotaCampeonatos::all();
-        
-        $uno="Mantenimiento";
-        $dos="Municipal";
-        $sql="SELECT * FROM cuota_campeonatos WHERE campeonato='".$dos."' group by campeonato,anio ORDER BY anio ASC ";
-        //dd($sql);
-        $poranio=DB::select($sql);
-        $anio=date('Y');
-        $mantenimiento=CuotaCampeonatos::where('anio',$anio)->where('campeonato',$uno)->get()->last();
-        $num=0;
-        $meses=Meses::all();
-
-        return view('admin.cuotascampeonatos.index', compact('cuotascampeonatos','num','meses','poranio','mantenimiento'));
+        $cuotascampeonatos=CuotasCampeonatos::all();
+       $num=0;
+        return view('admin.cuotascampeonatos.index', compact('cuotascampeonatos','num'));
     }
 
     /**
@@ -50,28 +41,27 @@ class CuotasCampeonatosController extends Controller
      */
     public function store(CuotasCampeonatosRequest $request)
     {
-
-        $buscar=CuotaCampeonatos::where('anio',$request->anio)->where('campeonato',$request->campeonato)->first();
+        $anio=date('Y');
+        $buscar=CuotasCampeonatos::where('anio',$anio)->where('campeonato',$request->campeonato)->first();
 
         if (count($buscar)>0) {
-            flash("YA HAN SIDO REGISTRADAS LAS CUOTAS DEL AÑO ".$request->anio." Y EL CAMPEONATO ".$request->campeonato.", DEBERÁ MODIFICARLAS DESDE LA LISTA PRINCIPAL!", 'error'); 
+            flash("YA HAN SIDO REGISTRADAS LAS CUOTAS DEL AÑO ".$anio." Y EL CAMPEONATO ".$request->campeonato.", DEBERÁ MODIFICARLAS DESDE LA LISTA PRINCIPAL!", 'error'); 
             return redirect()->route('cuotascampeonatos.create')->withInput();
         } else {
 
-            if ($request->campeonato=="Municipal") {
-                for($i=1;$i<=12;$i++){
-                $cuotascampeonato=CuotaCampeonatos::create(['monto' => $request->monto,
-                                                            'campeonato' => $request->campeonato,
-                                                            'anio' => $request->anio,
-                                                            'id_mes' => $i]);
-                }
-            } else {
-                $cuotascampeonato=CuotaCampeonatos::create(['monto' => $request->monto,
-                                                            'campeonato' => $request->campeonato,
-                                                            'anio' => $request->anio,
-                                                            'id_mes' => 12]);
-            }
             
+                $cuotacampeonato=CuotasCampeonatos::create(['monto' => $request->monto,
+                                                            'anio' => $anio,
+                                                            'campeonato' => $request->campeonato]);
+                $atletas=Atletas::all();
+                foreach ($atletas as $key) {
+                $estadopago=EstadosPagos::create(['estado' => 'Sin pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $key->representantes[0]->id]);
+                $campeonato=Campeonatos::create(['id_cuotacamp' => $cuotacampeonato->id, 
+                                                'id_estadopago' => $estadopago->id]);
+                }
             
             flash("REGISTRO EXITOSO!", 'success'); 
             return redirect()->route('cuotascampeonatos.index');
