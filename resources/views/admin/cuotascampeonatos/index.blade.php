@@ -32,50 +32,21 @@
               <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                  <tr>
-                    @foreach($meses as $mes)
-                      <th>{{$mes->mes}}</th>
-                    @endforeach
+                  <tr>    
                     <th>Año</th>
-                    <th>Municipal</th>
-                    <th>Mantenimiento</th>
+                    <th>Torneo</th>
+                    <th>Cuota</th>
                   </tr>
                 </thead>
                 <tbody>
 
-                @foreach($poranio as $key)
-                  <tr> 
-                  <?php $i=1; ?>
-                  @foreach($cuotascampeonatos as $key2)
-                  
-                    @if($key2->anio==$key->anio && $key2->campeonato==$key->campeonato)
-                    <td><a href="{{ url('admin/cuotascampeonatos/editar', [$i,$key->anio,$key->campeonato] ) }}"> {{$key2->monto}}</a></td>
-                  <?php $i++; ?>
-                    @endif
-                  
-                  @endforeach
-                  <td>{{$key->anio}}</td>
-                 <td>{{$key->campeonato}}</td>
-                 <td>
-                 @if($mantenimiento!=null)
-                  <a href="{{ url('admin/cuotascampeonatos/editar', [12,$key->anio,'Mantenimiento'] ) }}">{{$mantenimiento->monto}}</a>
-                 @else
-                 Sin Cuota
-                  @endif
-                 </td>
-
-                  </tr>
-                @endforeach
-
-              </tbody>
-              <tfoot>
-                 <tr>
-                    @foreach($meses as $mes)
-                      <th>{{$mes->mes}}</th>
-                    @endforeach
+                
+                </tbody>
+                <tfoot>
+                  <tr>
                     <th>Año</th>
-                    <th>Municipal</th>
-                    <th>Mantenimiento</th>
+                    <th>Torneo</th>
+                    <th>Cuota</th>
                   </tr>
               </tfoot>
             </table>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pagos;
 use App\Meses;
-
+use App\Atletas;
+use App\EstadosPagos;
+use App\Matriculas;
 class PagosController extends Controller
 {
     /**
@@ -63,7 +65,28 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $anio=date('Y');
+    	for ($i=1; $i <= 12; $i++) { 
+                $pago=Pagos::create(['id_mes' => $i,
+                					'monto' => $request->monto,
+                					'anio' => $anio]);
+             
+            }
+        $atletas=Atletas::all();
+        foreach ($atletas as $key) {
+        	
+            for ($i=1; $i <= 12; $i++) { 
+                $pago=Pagos::where('id_mes',$i)->get()->last();
+                $estadopago=EstadosPagos::create(['estado' => 'Sin Pagar',
+                                                'forma_pago' => '',
+                                                'codigo_operacion' => '',
+                                                'id_atletarepres' => $key->representantes[0]->id]);
+                $matricula=Matriculas::create(['id_pago' => $pago->id,
+                                            'id_estadopago' => $estadopago->id]);
+        	}
+        }
+        flash("REGISTRO DE MONTO MENSUAL DE PAGO DE MATRÍCULA EXITOSO!", 'success'); 
+                return redirect()->route('pagos.index');
     }
 
     /**
