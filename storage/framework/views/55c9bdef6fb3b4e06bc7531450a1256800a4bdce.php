@@ -84,14 +84,9 @@
                     </td>
                   <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <?php $__currentLoopData = $matriculas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key3): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <?php if($key3->pagos->anio==$anio): ?>
-                    <?php $__currentLoopData = $estadospagos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key4): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <?php if($key3->id_estadopago==$key4->id and $key4->representantes->id_atleta==$atleta->id): ?>
-                        <th><?php echo e($key3->pagos->monto); ?></th>
-                      <?php endif; ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  <?php endif; ?>
+                <?php $__currentLoopData = $pagos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key3): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  
+                  
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <td>
                   <div class="btn-group">

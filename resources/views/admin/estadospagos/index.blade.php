@@ -84,14 +84,14 @@
                     </td>
                   @endif
                 @endforeach
-                @foreach($matriculas as $key3)
-                  @if($key3->pagos->anio==$anio)
-                    @foreach($estadospagos as $key4)
-                      @if($key3->id_estadopago==$key4->id and $key4->representantes->id_atleta==$atleta->id)
-                        <th>{{$key3->pagos->monto}}</th>
-                      @endif
-                    @endforeach
-                  @endif
+                @foreach($pagos as $key3)
+                  {{-- 
+                    @if($key3->anio==$anio and $key3->matriculas->estadospagos->atletasrepresentantes->id_atleta==$atleta->id )
+                      
+                          <th>{{$key3->pagos->monto}}</th>
+                      
+                    @endif --}}
+                  
                 @endforeach
                 <td>
                   <div class="btn-group">

@@ -23,13 +23,23 @@ class EstadosPagosController extends Controller
     {
         $num=0;
         $anio=date('Y');
-        $atletas=Atletas::all()->first();
+        $atletas=Atletas::all();
         $meses=Meses::all();
         $categorias=Categorias::groupBy('categoria')->get();
         //dd($atletas->representantes);
         $matriculas=Matriculas::all();
         $estadospagos=EstadosPagos::all();
-        return View('admin.estadospagos.index', compact('atletas','meses','num','categorias','anio','matriculas','estadospagos'));
+        $pagos=Pagos::where('anio',$anio)->get();
+        foreach ($atletas as $key => $value) {
+            foreach ($matriculas as $key ) {
+                if ($key->pagos->anio==$anio) {
+                echo $key->estadospagos->estado."-";
+                }
+            }
+            echo "*<br>";    
+        }
+        
+        return View('admin.estadospagos.index', compact('atletas','meses','num','categorias','anio','matriculas','estadospagos','pagos'));
     }
 
     /**
