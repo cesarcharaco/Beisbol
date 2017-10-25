@@ -83,6 +83,7 @@ class RepresentantesTableSeeder extends Seeder
 		        	'id_recaudo' => 3
 		        ));
 	    //-- cuarto
+	    
 
     }
 }

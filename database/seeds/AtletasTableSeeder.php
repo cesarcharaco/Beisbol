@@ -40,6 +40,8 @@ class AtletasTableSeeder extends Seeder
 	        	'id_representante' => 2,
 	        	'id_parentesco' => 1
 	    ));
+
+	    //--- registro del segundo
 	    \DB::table('recaudos')->insert(array(
 	        	'partida_nac' => 'No',
 	        	'copia_ced' => 'Si',
